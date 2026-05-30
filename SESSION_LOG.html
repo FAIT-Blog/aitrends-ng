@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>AITrends.ng — Claude Dev Session · 30 May 2026</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #0b0b0b; color: #e5e5e5; line-height: 1.65; font-size: 14px; }
+.page { max-width: 960px; margin: 0 auto; padding: 40px 20px 100px; }
+.session-header { border-bottom: 1px solid #222; padding-bottom: 24px; margin-bottom: 36px; }
+.session-header h1 { font-size: 1.5rem; color: #2563eb; margin-bottom: 4px; }
+.session-header p { color: #555; font-size: 0.85rem; }
+.turn { display: flex; flex-direction: column; gap: 4px; margin-bottom: 28px; }
+.label { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 2px; }
+.user .label { color: #f59e0b; }
+.assistant .label { color: #888; }
+.bubble { padding: 14px 18px; border-radius: 10px; max-width: 100%; line-height: 1.7; }
+.user .bubble { background: #0f0e00; border: 1px solid #3d3000; color: #fde68a; white-space: pre-wrap; }
+.assistant .bubble { background: #111; border: 1px solid #1e1e1e; color: #ccc; }
+.bubble code { background: #1e1e1e; color: #2563eb; padding: 1px 5px; border-radius: 3px; font-family: 'JetBrains Mono', monospace; font-size: 0.82rem; }
+.bubble pre { background: #0a0a0a; border: 1px solid #222; border-radius: 6px; padding: 14px; margin: 10px 0; overflow-x: auto; }
+.bubble pre code { background: none; color: #aaa; padding: 0; font-size: 0.8rem; line-height: 1.6; }
+.bubble ul, .bubble ol { padding-left: 22px; margin: 8px 0; }
+.bubble li { margin-bottom: 4px; }
+.bubble table { width: 100%; border-collapse: collapse; margin: 10px 0; font-size: 0.85rem; }
+.bubble th { background: #0f1629; color: #2563eb; text-align: left; padding: 7px 10px; border: 1px solid #1e2a4a; }
+.bubble td { padding: 6px 10px; border: 1px solid #1e1e1e; color: #bbb; vertical-align: top; }
+.bubble h2 { color: #fff; margin: 20px 0 8px; font-size: 1.05rem; border-bottom: 1px solid #222; padding-bottom: 4px; }
+.bubble h3 { color: #fff; margin: 16px 0 6px; font-size: 0.95rem; }
+.bubble h4 { color: #2563eb; margin: 12px 0 4px; font-size: 0.88rem; }
+.bubble strong { color: #fff; }
+.bubble em { color: #555; font-style: italic; }
+.bubble a { color: #60a5fa; }
+.bubble p { margin: 6px 0; }
+.bubble blockquote { border-left: 2px solid #2563eb; padding: 6px 14px; margin: 10px 0; color: #888; font-style: italic; }
+hr { border: none; border-top: 1px solid #1a1a1a; margin: 40px 0; }
+.todo-red { color: #ff6b6b; }
+.todo-orange { color: #ffa040; }
+.todo-yellow { color: #ffd060; }
+.todo-green { color: #4dc98a; }
+.todo-blue { color: #5aaee8; }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="session-header">
+    <h1>AITrends.ng — Claude Dev Session</h1>
+    <p>Date: 30 May 2026 | Project: aitrends.ng | Participants: Felix Okon &amp; Claude Code | Session: #1</p>
+  </div>
+
+<!-- ═══════════════ SESSION #1 · 30 May 2026 ═══════════════ -->
+
+<hr>
+<div class="turn user">
+  <div class="label">Felix</div>
+  <div class="bubble">Read CLAUDE.md and begin Session 1 of the AITrends.ng project.</div>
+</div>
+
+<div class="turn assistant">
+  <div class="label">Claude Code</div>
+  <div class="bubble">
+    <em>[Read: /Users/felixokon/Documents/WEBSITE_AI_Generated_Xai/aitrends.ng/CLAUDE.md]</em>
+    <em>[Bash: ls /Users/felixokon/Documents/WEBSITE_AI_Generated_Xai/aitrends.ng/ — result: only CLAUDE.md present]</em>
+
+    <p>Read the full CLAUDE.md spec and confirmed the project directory contained only CLAUDE.md — the Next.js scaffold had not yet been created. Prepared to execute the First Session Checklist (Sections 13) in order.</p>
+  </div>
+</div>
+
+<hr>
+<div class="turn user">
+  <div class="label">Felix</div>
+  <div class="bubble">Continue from where you left off.</div>
+</div>
+
+<div class="turn assistant">
+  <div class="label">Claude Code</div>
+  <div class="bubble">
+    <em>[Bash: ls -la — result: Next.js scaffold already exists with app/, package.json, tsconfig.json etc.]</em>
+    <em>[Read: package.json — React 19.2.4 installed, no @supabase/supabase-js, Next.js 16.2.6]</em>
+    <em>[Read: app/layout.tsx, app/page.tsx, app/globals.css — all default create-next-app boilerplate]</em>
+
+    <p>Discovered the Next.js project had already been scaffolded. Found React 19 installed — CLAUDE.md Section 11 explicitly prohibits React 19. Proceeded with the full First Session Checklist.</p>
+
+    <h2>Step 1 — Dependencies</h2>
+    <em>[Bash: npm install react@18 react-dom@18 @types/react@18 @types/react-dom@18 @supabase/supabase-js --save]</em>
+    <p>Downgraded React from 19.2.4 → 18.3.1, react-dom likewise, and installed <code>@supabase/supabase-js@^2.106.2</code>. The CLAUDE.md prohibition on React 19 exists because MDX editor compatibility is broken on React 19 (this applies to the bfx-site CLAUDE.md too, and the aitrends.ng spec carries the same rule). No MDX editor is used here, but the rule is explicit and was followed.</p>
+
+    <h2>Step 2 — Environment Files</h2>
+    <em>[Write: .env.local — all five env vars with empty values plus NEXT_PUBLIC_SITE_URL=http://localhost:3000]</em>
+    <em>[Write: .env.example — same structure, NEXT_PUBLIC_SITE_URL=https://aitrends.ng]</em>
+    <p>Confirmed .gitignore already covers <code>.env*</code> — no changes needed there.</p>
+
+    <h2>Step 3 — Supabase Schema</h2>
+    <em>[Bash: mkdir -p supabase]</em>
+    <em>[Write: supabase/schema.sql]</em>
+    <p>Created <code>supabase/schema.sql</code> with both tables from Section 4 of the spec:</p>
+    <ul>
+      <li><strong>posts</strong> — id (uuid), title, slug (unique), content, excerpt, category (enum check: ai-models/anthropic/industry/tools), tags (text[]), cover_image_url, cover_image_prompt, source_urls (text[]), status (enum check: published/draft), auto_generated, created_at, published_at. Indexes on (status, published_at), category, slug.</li>
+      <li><strong>scout_memory</strong> — id, feed_url, item_guid, item_title, processed_at, post_id (FK → posts.id, nullable). Unique constraint on (feed_url, item_guid) to prevent duplicates. Index on (feed_url, item_guid).</li>
+    </ul>
+    <p>Row Level Security enabled on both tables. Public policy allows SELECT on published posts only. Service role key bypasses RLS by default — no extra policy needed for Scout writes.</p>
+    <p><strong>Action required by Felix:</strong> Go to Supabase dashboard → SQL Editor → paste contents of <code>supabase/schema.sql</code> → Run.</p>
+
+    <h2>Step 4 — API Routes</h2>
+    <em>[Write: lib/supabase.ts — lazy proxy Supabase client (public + admin)]</em>
+    <em>[Write: lib/slugify.ts — slug generation utility]</em>
+    <em>[Write: lib/types.ts — Post TypeScript interface]</em>
+    <em>[Write: lib/createPost.ts — shared post-creation logic with unique slug generation]</em>
+    <em>[Write: app/api/health/route.ts — GET returns { status: "ok" }]</em>
+    <em>[Write: app/api/posts/create/route.ts — POST, x-api-key auth, publishes post]</em>
+    <em>[Write: app/api/posts/draft/route.ts — POST, x-api-key auth, saves as draft]</em>
+
+    <p>All three API routes check the <code>x-api-key</code> header against <code>process.env.SCOUT_API_KEY</code>. The <code>/api/posts/create</code> and <code>/api/posts/draft</code> routes share the same validation and <code>createPost()</code> logic — only the <code>status</code> argument differs.</p>
+
+    <p>The slug generation in <code>lib/createPost.ts</code> follows the spec exactly:</p>
+    <ul>
+      <li>Lowercase, hyphen-separated, special chars stripped, max 80 chars</li>
+      <li>Appends <code>-2</code>, <code>-3</code> etc. if slug already exists (loop queries Supabase until unique)</li>
+    </ul>
+
+    <p>The <code>/api/posts/create</code> response matches the spec:</p>
+    <pre><code>{ success: true, post_id: "uuid", slug: "...", url: "https://aitrends.ng/post/..." }</code></pre>
+
+    <p>The Supabase client in <code>lib/supabase.ts</code> uses a lazy Proxy pattern. The first approach (module-level <code>createClient()</code> call) caused the build to fail with <code>supabaseUrl is required</code> during <code>next build</code> when env vars are empty. The Proxy defers instantiation to the first method call, so the module can be imported safely at build time without env vars present.</p>
+
+    <h2>Step 5 — Brand CSS</h2>
+    <em>[Write: app/globals.css — brand design system]</em>
+    <p>Replaced the default Tailwind/Geist boilerplate with the full AITrends.ng design system from Section 2 of the spec:</p>
+    <ul>
+      <li>Google Fonts import: Sora (headings), Inter (body), JetBrains Mono (code)</li>
+      <li>CSS custom properties: <code>--bg: #0a0a0f</code>, <code>--surface: #111827</code>, <code>--border: #1f2937</code>, <code>--blue: #2563eb</code>, <code>--gold: #f59e0b</code>, <code>--text: #e5e7eb</code>, <code>--muted: #6b7280</code></li>
+      <li>Prose styles for post body rendering (headings, links, lists, blockquotes, code, images)</li>
+    </ul>
+
+    <h2>Step 6 — Layout, NavBar, Footer</h2>
+    <em>[Write: components/NavBar.tsx — responsive nav with category links, active state highlighting]</em>
+    <em>[Write: components/Footer.tsx — FAIT attribution, RSS link]</em>
+    <em>[Write: app/layout.tsx — root layout wrapping children with NavBar + Footer, global metadata]</em>
+
+    <p>NavBar is a Client Component (<code>'use client'</code>) to use <code>usePathname()</code> for active link highlighting. It shows the AITrends<span style="color:#f59e0b">.ng</span> wordmark and category navigation links. The <code>&lt;main&gt;</code> tag is in the root layout; the page-level containers handle their own width constraints.</p>
+
+    <h2>Step 7 — Shared Components</h2>
+    <em>[Write: components/CategoryBadge.tsx — coloured pill badge per category]</em>
+    <em>[Write: components/PostCard.tsx — card with cover image, category badge, title, excerpt, date, read time, AI digest label]</em>
+    <em>[Write: components/HeroPost.tsx — full-width two-column hero layout for featured post]</em>
+    <em>[Write: components/Sidebar.tsx — About blurb, category counts, latest 5 posts]</em>
+    <em>[Write: components/PostGrid.tsx — responsive grid with Load More button, 9 posts per page]</em>
+
+    <p>CategoryBadge uses per-category colour pairs (background + text) matching the brand palette. PostCard and HeroPost handle the missing cover image case gracefully with a gradient placeholder. PostGrid is a Client Component for the Load More state.</p>
+
+    <p>Bug fixed during build: <code>Sidebar.tsx</code> had a duplicate <code>display</code> property in a style object (both <code>'block'</code> and <code>'-webkit-box'</code>). TypeScript caught this. Fixed by removing the <code>'block'</code> value and keeping <code>'-webkit-box'</code> with the line-clamp properties.</p>
+
+    <h2>Step 8 — Pages</h2>
+    <em>[Write: app/page.tsx — homepage with Today in AI header, category filter tabs, HeroPost, PostGrid + Sidebar]</em>
+    <em>[Write: app/post/[slug]/page.tsx — post detail: cover image, meta row, h1 title, prose body, tags, source attribution, share buttons, related posts]</em>
+    <em>[Write: app/category/[slug]/page.tsx — filtered grid with category description header]</em>
+    <em>[Write: app/about/page.tsx — 5-step automation pipeline explanation, who it's for, FAIT attribution]</em>
+
+    <p>All Supabase-fetching pages export <code>export const dynamic = 'force-dynamic'</code> so Next.js renders them at request time rather than attempting static generation at build time (which would fail without Supabase credentials).</p>
+
+    <p>The post page uses <code>dangerouslySetInnerHTML</code> to render the stored HTML content inside a <code>.prose</code> container. This is intentional — Scout will store pre-rendered HTML from Gemini.</p>
+
+    <p>Dynamic metadata (<code>generateMetadata</code>) is implemented for post pages and category pages. Root layout covers the homepage defaults.</p>
+
+    <h2>Step 9 — SEO Routes</h2>
+    <em>[Write: app/sitemap.ts — dynamic sitemap with all published posts + static routes]</em>
+    <em>[Write: app/feed.xml/route.ts — RSS 2.0 feed, latest 20 published posts, 1hr cache]</em>
+    <em>[Write: app/robots.ts — allow all, point to sitemap]</em>
+
+    <h2>Build Verification</h2>
+    <em>[Bash: npm run build — first attempt: TypeScript error in Sidebar.tsx (duplicate display property)]</em>
+    <em>[Edit: components/Sidebar.tsx — fixed duplicate display property]</em>
+    <em>[Bash: npm run build — second attempt: supabaseUrl is required error during page data collection]</em>
+    <em>[Write: lib/supabase.ts — rewrote with lazy Proxy pattern to defer client init]</em>
+    <em>[Edit: app/page.tsx, app/post/[slug]/page.tsx, app/category/[slug]/page.tsx, app/sitemap.ts — added export const dynamic = 'force-dynamic']</em>
+    <em>[Bash: npm run build — third attempt: SUCCESS ✓]</em>
+
+    <p>Final build output (clean):</p>
+    <pre><code>Route (app)
+┌ ƒ /
+├ ○ /_not-found
+├ ○ /about
+├ ƒ /api/health
+├ ƒ /api/posts/create
+├ ƒ /api/posts/draft
+├ ƒ /category/[slug]
+├ ƒ /feed.xml
+├ ƒ /post/[slug]
+├ ○ /robots.txt
+└ ƒ /sitemap.xml</code></pre>
+
+    <h2>File Tree Created This Session</h2>
+    <pre><code>aitrends.ng/
+  lib/
+    supabase.ts          ← lazy proxy Supabase client (public + admin)
+    slugify.ts           ← slug generation utility
+    types.ts             ← Post TypeScript interface
+    createPost.ts        ← shared post creation logic
+  components/
+    NavBar.tsx           ← site nav with active state
+    Footer.tsx           ← FAIT attribution + RSS link
+    CategoryBadge.tsx    ← coloured category pill
+    PostCard.tsx         ← grid card component
+    HeroPost.tsx         ← featured post hero layout
+    Sidebar.tsx          ← about blurb + category counts + recent posts
+    PostGrid.tsx         ← responsive grid with Load More
+  app/
+    globals.css          ← brand design system (Sora/Inter/JB Mono + CSS vars)
+    layout.tsx           ← root layout with NavBar + Footer
+    page.tsx             ← homepage
+    about/page.tsx       ← about page
+    post/[slug]/page.tsx ← individual post
+    category/[slug]/page.tsx ← category filtered feed
+    sitemap.ts           ← dynamic sitemap
+    robots.ts            ← robots.txt
+    feed.xml/route.ts    ← RSS 2.0 feed
+    api/
+      health/route.ts              ← GET { status: "ok" }
+      posts/create/route.ts        ← POST publish (x-api-key protected)
+      posts/draft/route.ts         ← POST draft (x-api-key protected)
+  supabase/
+    schema.sql           ← posts + scout_memory tables + RLS policies
+  .env.local             ← local env vars (git-ignored)
+  .env.example           ← env var template (committed)</code></pre>
+
+    <h2>What Felix Needs to Do Next</h2>
+    <ol>
+      <li><strong>Supabase:</strong> Go to <a href="https://app.supabase.com">app.supabase.com</a> → create a project → SQL Editor → paste <code>supabase/schema.sql</code> → Run. Copy the Project URL and anon/service_role keys.</li>
+      <li><strong>.env.local:</strong> Fill in all five env vars: <code>NEXT_PUBLIC_SUPABASE_URL</code>, <code>NEXT_PUBLIC_SUPABASE_ANON_KEY</code>, <code>SUPABASE_SERVICE_ROLE_KEY</code>, <code>SCOUT_API_KEY</code> (choose any strong random string), <code>SLACK_WEBHOOK_URL</code>.</li>
+      <li><strong>Test locally:</strong> <code>npm run dev</code> → visit <a href="http://localhost:3000">http://localhost:3000</a>. The homepage will show an empty state (no posts yet) — that's correct.</li>
+      <li><strong>GitHub:</strong> <code>git init &amp;&amp; git add . &amp;&amp; git commit -m "feat: initial build — Session 1"</code> → push to a new GitHub repo.</li>
+      <li><strong>Vercel:</strong> Import the GitHub repo → add all five env vars in Vercel dashboard + <code>NEXT_PUBLIC_SITE_URL=https://aitrends.ng</code> → deploy. Confirm <code>/api/health</code> returns <code>{ status: "ok" }</code>.</li>
+      <li><strong>DNS:</strong> Add the A and CNAME records at Go54 as specified in Section 10 of CLAUDE.md once Vercel gives the deployment URL.</li>
+    </ol>
+
+    <p class="todo-green"><strong>Session #1 complete.</strong> Build passes. All First Session Checklist items done. Site is ready for Supabase credentials and first deploy.</p>
+  </div>
+</div>
+
+</div>
+</body>
+</html>

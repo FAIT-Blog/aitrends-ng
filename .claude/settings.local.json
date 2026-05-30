@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm install *)",
+      "Bash(node -e \"const p = require\\('./package.json'\\); console.log\\('react:', p.dependencies.react, '\\\\nreact-dom:', p.dependencies['react-dom'], '\\\\n@supabase/supabase-js:', p.dependencies['@supabase/supabase-js']\\)\")",
+      "Bash(mkdir -p /Users/felixokon/Documents/WEBSITE_AI_Generated_Xai/aitrends.ng/app/post/\\\\[slug\\\\] \\\\ *)",
+      "Bash(npm run *)"
+    ],
+    "additionalDirectories": [
+      "/Users/felixokon/Documents/WEBSITE_AI_Generated_Xai/aitrends.ng/app/post"
+    ]
+  }
+}

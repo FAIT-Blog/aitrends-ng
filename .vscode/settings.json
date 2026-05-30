@@ -1,0 +1,11 @@
+{
+    "editor.fontSize": 20,
+    "editor.inlayHints.fontSize": 20,
+    "editor.minimap.sectionHeaderFontSize": 20,
+    "editor.suggestFontSize": 20,
+    "chat.editor.fontSize": 20,
+    "chat.fontSize": 20,
+    "debug.console.fontSize": 20,
+    "terminal.integrated.fontSize": 20,
+    "editor.codeLensFontSize": 20
+}
