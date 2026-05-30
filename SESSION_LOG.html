@@ -237,6 +237,91 @@ hr { border: none; border-top: 1px solid #1a1a1a; margin: 40px 0; }
   </div>
 </div>
 
+<hr>
+<div class="turn user">
+  <div class="label">Felix</div>
+  <div class="bubble">Yes, Supabase SQL editor ran</div>
+</div>
+
+<div class="turn assistant">
+  <div class="label">Claude Code</div>
+  <div class="bubble">
+    <em>[Bash: npm run dev &amp; sleep 6 &amp;&amp; curl -s http://localhost:3002/api/health]</em>
+
+    <p>Port 3000 was occupied by another project on Felix's machine. Next.js automatically used port 3002. Tested both the health endpoint and the homepage:</p>
+    <ul>
+      <li><code>http://localhost:3002/api/health</code> → <code>{"status":"ok"}</code> ✓</li>
+      <li><code>http://localhost:3002/</code> → HTTP 200 ✓</li>
+    </ul>
+    <p>Supabase connection confirmed working locally. Env vars are loaded correctly from <code>.env.local</code>.</p>
+  </div>
+</div>
+
+<hr>
+<div class="turn user">
+  <div class="label">Felix</div>
+  <div class="bubble">Github repo created — https://github.com/FAIT-Blog/aitrends-ng</div>
+</div>
+
+<div class="turn assistant">
+  <div class="label">Claude Code</div>
+  <div class="bubble">
+    <em>[Bash: git init &amp;&amp; git add . &amp;&amp; git commit -m "feat: Session 1 — initial build" &amp;&amp; git remote add origin ... &amp;&amp; git push -u origin main]</em>
+
+    <p>First push attempt failed: <code>remote: Permission to FAIT-Blog/aitrends-ng.git denied to felicota.</code> — the local Git credentials were for the <code>felicota</code> account, not the <code>FAIT-Blog</code> org that owns the repo.</p>
+    <p>Felix provided a Personal Access Token. First token had <strong>no scopes</strong> (<code>x-oauth-scopes: </code> — empty), confirmed via GitHub API. Token with no scopes cannot push to any repo.</p>
+
+    <em>[Bash: curl -sI -H "Authorization: token ..." https://api.github.com/user | grep x-oauth-scopes → empty]</em>
+
+    <p>Instructed Felix to regenerate the token with the <code>repo</code> scope checked. Second token provided and confirmed as belonging to <code>FAIT-Blog</code> account with correct permissions.</p>
+
+    <em>[Bash: git remote set-url origin https://TOKEN@github.com/FAIT-Blog/aitrends-ng.git &amp;&amp; git push -u origin main → success]</em>
+
+    <p>41 files pushed to <code>main</code> branch. Repo is live at <a href="https://github.com/FAIT-Blog/aitrends-ng">github.com/FAIT-Blog/aitrends-ng</a>.</p>
+  </div>
+</div>
+
+<hr>
+<div class="turn user">
+  <div class="label">Felix</div>
+  <div class="bubble">aitrends-ng.vercel.app</div>
+</div>
+
+<div class="turn assistant">
+  <div class="label">Claude Code</div>
+  <div class="bubble">
+    <em>[Bash: curl -s https://aitrends-ng.vercel.app/api/health]</em>
+    <em>[Bash: curl status checks on /, /feed.xml, /about]</em>
+
+    <p>Felix imported the GitHub repo into Vercel, added all environment variables, and deployed. Confirmed all production endpoints:</p>
+
+    <table>
+      <tr><th>URL</th><th>Result</th></tr>
+      <tr><td><code>https://aitrends-ng.vercel.app/api/health</code></td><td class="todo-green">{"status":"ok"} ✓</td></tr>
+      <tr><td><code>https://aitrends-ng.vercel.app/</code></td><td class="todo-green">HTTP 200 ✓</td></tr>
+      <tr><td><code>https://aitrends-ng.vercel.app/feed.xml</code></td><td class="todo-green">HTTP 200 ✓</td></tr>
+      <tr><td><code>https://aitrends-ng.vercel.app/about</code></td><td class="todo-green">HTTP 200 ✓</td></tr>
+    </table>
+
+    <p>The site is fully live in production. The <code>/api/posts/create</code> and <code>/api/posts/draft</code> endpoints are live and protected by <code>SCOUT_API_KEY</code>. No posts in the database yet — the homepage shows an empty grid, which is the correct behaviour at this stage.</p>
+
+    <h2>Session #1 Final State</h2>
+    <table>
+      <tr><th>Item</th><th>Status</th></tr>
+      <tr><td>Next.js app built &amp; TypeScript clean</td><td class="todo-green">✅ Done</td></tr>
+      <tr><td>React downgraded to 18</td><td class="todo-green">✅ Done</td></tr>
+      <tr><td>Supabase schema live (posts + scout_memory)</td><td class="todo-green">✅ Done</td></tr>
+      <tr><td>All API routes (/health, /create, /draft)</td><td class="todo-green">✅ Done</td></tr>
+      <tr><td>All public pages (/, /post, /category, /about)</td><td class="todo-green">✅ Done</td></tr>
+      <tr><td>Sitemap + RSS + robots.txt</td><td class="todo-green">✅ Done</td></tr>
+      <tr><td>GitHub: FAIT-Blog/aitrends-ng</td><td class="todo-green">✅ Done</td></tr>
+      <tr><td>Vercel: aitrends-ng.vercel.app</td><td class="todo-green">✅ Live</td></tr>
+    </table>
+
+    <p><strong>Next session:</strong> Session 2 — build the Scout Agent (Node.js cron, Gemini rewrite, Pollinations cover image, Slack notification). Scout will be hosted on Render and call <code>/api/posts/create</code> automatically on a schedule.</p>
+  </div>
+</div>
+
 </div>
 </body>
 </html>
