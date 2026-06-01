@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   title: 'AITrends.ng — AI news for African builders',
   description:
     "The African builder's daily briefing on Claude, Anthropic, and the models shaping what's next.",
-  metadataBase: new URL('https://aitrends.ng'),
+  metadataBase: new URL('https://aitrends-ng.vercel.app'),
   openGraph: {
     siteName: 'AITrends.ng',
     type: 'website',
