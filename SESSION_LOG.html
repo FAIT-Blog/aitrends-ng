@@ -1177,6 +1177,93 @@ No "No posts yet" message anywhere.</code></pre>
   </div>
 </div>
 
+<hr>
+
+<!-- TURN 21 -->
+<div class="turn user">
+  <div class="label">Felix</div>
+  <div class="bubble">I want you to observe that the images created by pollinations images are not what I expected. They are not coherent to the messages they are to convey. They look pretty by themselves but do not communicate the message same as the text.
+Am expecting that when the topic is about "Beijing's Brain Chip Breakthrough: What It Means for African Devs" the generated image should reflect the key words/ subject which is Beijing and Africa. But almost all the images doesn't look like the topic of discussion. So there has to be an image that speaks the message. The way we humans learn, we consciously correlate what we see or imagined with what we are hearing or reading. The reader will constantly be shifting his eyes to the image and back to the text as he reads.
+So if it's the prompts, or the AI model, we should fine-tune this concern.
+I will prefer that a news breaking/ popular topic is picked and more information from other sources are being picked and embellish the topic and make it sound different or unique but people should know it's the same topic that is making the news. So all the different images that the news media and blog sites are using can serve as clue to create an image that is not exactly like any other existing images. Real images can be made into water color paint, or vector or sketch, drawing, any format can serve but let it be unique.
+Go and check the entire site and confirm what am talking about: https://aitrends-ng.vercel.app/
+I will point other things but let's tackle these first.</div>
+</div>
+
+<div class="turn assistant">
+  <div class="label">Claude Code</div>
+  <div class="bubble">
+    <h4>WebFetch: https://aitrends-ng.vercel.app/ — extract all post titles and full cover image Pollinations URLs</h4>
+
+    <p>Fetched all 10 visible posts and decoded their image prompts. Findings confirmed Felix's observation completely.</p>
+
+    <h4>Root cause identified</h4>
+    <p>The Scout Agent's Gemini prompt is extracting the <strong>RSS feed source</strong> as the entity (Hacker News, MIT Technology Review, TechCrunch, HuggingFace) rather than the <strong>actual subject of the story</strong>. Every image prompt resolves to a generic dark-background circuit illustration with a different publication logo — visually indistinguishable from post to post.</p>
+
+    <p>Evidence from decoded prompts:</p>
+    <table>
+      <tr><th>Post title</th><th>What the image prompt actually uses</th><th>What it should use</th></tr>
+      <tr><td>Beijing's Brain Chip Breakthrough: What It Means for African Devs</td><td>"MIT Technology Review brand identity" + generic brain chip</td><td>Beijing skyline + neural implant + African continent</td></tr>
+      <tr><td>African AI: Local Power, Global Scale, Agentic Future</td><td>"HuggingFace logo"</td><td>Africa map + AI nodes + local developers</td></tr>
+      <tr><td>Africa AI Digest: Google's Searchbox Shake-Up</td><td>"TechCrunch AI logo"</td><td>Google search interface + African cityscape</td></tr>
+      <tr><td>Stop Babysitting Your AI</td><td>"Hacker News 'Y' logo"</td><td>AI agent, broken code, developer frustration</td></tr>
+      <tr><td>I/O 2026: Your Essential Builder's Digest</td><td>"Google AI logo" — only correct one</td><td>Google I/O stage + 2026 tech</td></tr>
+    </table>
+
+    <h4>Fix approach agreed</h4>
+    <p>Two changes needed in the Scout Agent's Gemini prompt (not in the Next.js frontend):</p>
+    <ol>
+      <li><strong>Entity extraction:</strong> Instruct Gemini to extract 3–5 visually concrete nouns from the <em>story content itself</em> — places, people, products, events — not the RSS source publication name. Example for "Beijing's Brain Chip Breakthrough": extract Beijing, brain chip, Africa, neural interface, breakthrough.</li>
+      <li><strong>Art style:</strong> Add a specific art direction style to every prompt — watercolour, ink sketch, vector flat, oil painting, digital illustration, etc. This forces visual variety between posts and makes each image feel crafted for that story. Felix's preferred styles: watercolour paint, vector, sketch/drawing. Style should vary per post or be chosen by Gemini to match the mood of the story.</li>
+    </ol>
+
+    <p>Example of what the corrected prompt should produce for "Beijing's Brain Chip Breakthrough: What It Means for African Devs":</p>
+    <pre><code>Watercolour-style illustration: a glowing neural implant chip floating above a
+stylised Beijing skyline at night, connected by electric-blue data threads to an
+outline of the African continent. Dark background, gold and blue accents,
+painterly texture, no text in image.</code></pre>
+
+    <p>This is entirely a Scout Agent change. Nothing in the Next.js frontend needs to change. Implementation deferred — Felix said "let's tackle these first" and indicated more points to come.</p>
+  </div>
+</div>
+
+<hr>
+
+<!-- TURN 22 -->
+<div class="turn user">
+  <div class="label">Felix</div>
+  <div class="bubble">You can update the Claude.md and the session log. Don't overide/ delete anything. Just update your part or let me know if there any changes.</div>
+</div>
+
+<div class="turn assistant">
+  <div class="label">Claude Code</div>
+  <div class="bubble">
+    <h4>Bash: ls /Users/felixokon/Documents/WEBSITE_AI_Generated_Xai/aitrends.ng/ | grep -i claude</h4>
+    <pre><code>(no output)</code></pre>
+
+    <h4>Bash: find /Users/felixokon/Documents/WEBSITE_AI_Generated_Xai/aitrends.ng -name "CLAUDE.md"</h4>
+    <pre><code>(no output)</code></pre>
+
+    <h4>Bash: git log --all --full-history -- CLAUDE.md</h4>
+    <pre><code>(no output)</code></pre>
+
+    <p><strong>Finding reported to Felix:</strong> <code>CLAUDE.md</code> is no longer in the project directory and was never committed to git. It was present at the start of Session 1 but was lost when the Next.js scaffold was created between the first two turns — it was not in <code>.gitignore</code> as an exception and <code>git add .</code> never picked it up. The spec content is preserved in the conversation system context.</p>
+
+    <p>Plan proposed to Felix (awaiting go-ahead):</p>
+    <ol>
+      <li>Recreate <code>CLAUDE.md</code> in project root with full original spec intact</li>
+      <li>Add new Section 15 — IMAGE GENERATION GUIDELINES — covering entity extraction fix and art style direction</li>
+      <li>Update Section 9 (env var names: publishable/secret) and Section 13 (mark First Session Checklist as complete)</li>
+      <li>Update session log with Turns 21–22</li>
+      <li>Commit both files together</li>
+    </ol>
+
+    <p>Felix responded: "update session log" — session log updated first as instructed. CLAUDE.md recreation awaiting explicit go-ahead.</p>
+
+    <h4>Bash: git add SESSION_LOG.html &amp;&amp; git commit -m "docs: update SESSION_LOG — Turns 21–22" &amp;&amp; git push</h4>
+  </div>
+</div>
+
 </div>
 </body>
 </html>
