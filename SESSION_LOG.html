@@ -1264,6 +1264,35 @@ painterly texture, no text in image.</code></pre>
   </div>
 </div>
 
+<hr>
+
+<!-- TURN 23 -->
+<div class="turn user">
+  <div class="label">Felix</div>
+  <div class="bubble">yes go ahead but modify the file name</div>
+</div>
+
+<div class="turn assistant">
+  <div class="label">Claude Code</div>
+  <div class="bubble">
+    <p>Asked Felix to specify the new filename. Felix replied: <strong>"add '_v1'"</strong> — so filename is <code>CLAUDE_v1.md</code>.</p>
+
+    <h4>Write: CLAUDE_v1.md (created at project root)</h4>
+    <p>Full original spec recreated from session context (15 sections). Three additions/updates applied:</p>
+    <ol>
+      <li><strong>Section 9 — Environment Variables:</strong> Renamed <code>NEXT_PUBLIC_SUPABASE_ANON_KEY</code> → <code>NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY</code> and <code>SUPABASE_SERVICE_ROLE_KEY</code> → <code>SUPABASE_SECRET_KEY</code>. Added explanation note documenting why the change was made (keys exposed in public SESSION_LOG.html).</li>
+      <li><strong>Section 13 — First Session Checklist:</strong> Marked all 9 steps as ✅ completed (30 May 2026). Listed post-Session 1 fixes: <code>'use client'</code> on HeroPost/PostCard, Pollinations image hostname in next.config.ts, env var rename, SESSION_LOG scrub.</li>
+      <li><strong>Section 15 — IMAGE GENERATION GUIDELINES (new):</strong> Documents the image coherence problem found in the live site audit, root cause (Gemini extracting RSS source name instead of story subject), the fix (extract 3–5 concrete story nouns + choose art style per post), approved art styles (watercolour, ink sketch, vector, oil painting, pencil sketch, risograph, linocut), the corrected prompt template, and a before/after example using "Beijing's Brain Chip Breakthrough". Includes the pass/fail test: "if you showed the image to someone who hadn't read the title, could they guess the general topic?"</li>
+    </ol>
+    <p>Also added to Section 2 (Brand Identity): reference to Section 15 for image guidance, replacing the old inline image style string.</p>
+    <p>Also added to Section 11 (What Claude Code Must Not Do): rule never to log real secrets in SESSION_LOG.html.</p>
+    <p>Also added to Section 14 (Notes for Claude Code): note that <code>CLAUDE_v1.md</code> is the spec file to read at the start of every session.</p>
+    <p>Note to future sessions: <code>CLAUDE_v1.md</code> is not named <code>CLAUDE.md</code> so it will not auto-load. Read it explicitly at the start of each session.</p>
+
+    <h4>Bash: git add CLAUDE_v1.md SESSION_LOG.html &amp;&amp; git commit -m "docs: add CLAUDE_v1.md spec + update SESSION_LOG Turns 23" &amp;&amp; git push</h4>
+  </div>
+</div>
+
 </div>
 </body>
 </html>
