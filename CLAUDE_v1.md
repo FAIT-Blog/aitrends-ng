@@ -7,26 +7,34 @@
 
 ---
 
-## 1. PROJECT OVERVIEW
+## 1. PROJECT OVERVIEW — MISSION
 
-AITrends.ng is a fully automated AI news digest blog covering Claude, Anthropic, and the broader AI model ecosystem. It is written in a punchy, opinionated digest voice and targeted at African builders and developers who follow global AI closely.
+AITrends.ng is a fully autonomous AI news and blog platform that captures the latest news, events,
+happenings, innovations, and trends in Artificial Intelligence — with a primary focus on the Africa
+region, and Nigeria / West Africa in particular. No daily human intervention. The system runs itself
+automatically.
 
 Every post is:
-- Sourced automatically from RSS feeds
-- Rewritten by Gemini 1.5 Flash into a punchy digest
-- Illustrated with an AI-generated cover image (Pollinations.ai)
+- Sourced automatically from RSS feeds (global + Africa-specific)
+- Rewritten by Gemini 3.5 Flash into a punchy, Africa-first digest
+- Illustrated with an AI-generated story-first cover image (Pollinations.ai)
 - Published automatically via a protected API endpoint
 - Stored in Supabase
 - Notified via Slack
 
 The human owner (Felix) does **nothing daily**. The system runs autonomously on a schedule.
 
+> **Content stance:** Africa first. Global AI news is relevant only when it has a specific, clear
+> implication for African developers, founders, or Nigeria/West Africa's tech ecosystem. Posts must
+> be written FROM an African perspective — not global tech news with Africa mentioned at the end.
+
 ---
 
 ## 2. BRAND IDENTITY
 
 **Name:** AITrends.ng  
-**Tagline:** "The African builder's daily briefing on Claude, Anthropic, and the models shaping what's next."  
+**Tagline (updated):** "Africa's autonomous briefing on AI — news, trends, and what it means for builders here."
+**Old tagline (retired):** "The African builder's daily briefing on Claude, Anthropic, and the models shaping what's next." — Too narrow. Replaced.
 **Powered by:** FAIT (small footer attribution — "by FAIT")  
 **Voice:** Punchy, opinionated, like a smart friend briefing you — not a journalist reporting at you  
 **Audience:** African developers, founders, and AI builders  
@@ -451,3 +459,70 @@ image, no logos.
 
 ### Rule
 The image must pass this test: **if you showed the image to someone who hadn't read the title, could they guess the general topic?** If yes, the prompt is correct. If it just looks like a generic tech illustration, the prompt needs to be rewritten.
+
+---
+
+## 16. SITE AUDIT — 3 June 2026
+
+Audit performed by Claude Code (Session 3 of scout-agent). Full review of the live site at `aitrends-ng.vercel.app`.
+
+### What Is Working ✅
+- Homepage loads correctly — dark theme, electric blue/gold accents, clean card grid
+- Navigation: Anthropic, AI Models, Industry, Tools, About — all resolve
+- Category pages load with correct post counts (Industry: 8, Tools: 8, AI Models: 6, Anthropic: 1)
+- Category filtering on homepage works
+- About page loads — all 5 steps render correctly
+- Footer shows category counts, RSS link, FAIT attribution
+- Load More button present on homepage
+- "AI Generated" badge on auto-generated posts
+- Source URL attribution at bottom of post pages
+- Share on X and LinkedIn buttons on post pages
+- Related posts section on post pages
+
+### Issues Found 🔴
+
+**1. Individual post pages returning HTTP 404**
+Direct URL access to `/post/[slug]` returns 404. The route `app/post/[slug]/page.tsx` exists in the codebase but Vercel is not serving it. This means:
+- The "Read Post →" button in every Slack notification is broken
+- Any user who copies and shares a post URL gets a 404
+- SEO crawlers cannot index any post content
+**Priority: Critical. Must fix before anything else.**
+
+**2. About page content is outdated**
+- Tagline: *"The African builder's daily briefing on Claude, Anthropic, and the models shaping what's next."* — Too narrow. Mission has changed.
+- Step 02: Says "Gemini 1.5 Flash" — actual model is Gemini 3.5 Flash
+- Step 01: Mentions "r/MachineLearning and r/ClaudeAI" — these feeds are NOT in `feeds.js`
+- "Who it's for" section: says "stay on top of the Claude and Anthropic ecosystem" — too narrow
+
+**3. Mission/content misalignment**
+Current posts are predominantly global AI news (Microsoft, OpenAI, Meta, Uber) with an Africa sentence appended at the end. The updated mission is Africa-first. This requires:
+- Africa-specific RSS feeds added to Scout's `feeds.js`
+- Gemini prompt rewritten to be Africa-first (not global-with-Africa-tacked-on)
+
+### Issues Found 🟡
+
+**4. Tagline appears in multiple places — all need updating**
+- About page (`app/about/page.tsx` line 34)
+- About page meta description (`app/about/page.tsx` line 8)
+- Check: Footer component, layout.tsx, any OpenGraph meta
+
+**5. OG meta tags — partially implemented, needs verification**
+`app/post/[slug]/page.tsx` has `generateMetadata()` with full OpenGraph (title, description, image, url, type: article) and Twitter card. But since post pages are returning 404, OG tags cannot be verified. Once post 404 is fixed, test social sharing to confirm previews render.
+
+**6. `sitemap.xml` exists but not submitted to Google**
+`/sitemap.xml` is live. Submit to Google Search Console to enable indexing.
+
+### Items Not Yet Built (deferred to after system is perfected)
+- Email newsletter / subscriber form
+- Social media auto-posting
+- Google Search Console setup (manual — no code needed)
+- Admin dashboard for managing posts
+
+### Live Post Inventory (as of 3 June 2026)
+| Category | Count | Notes |
+|---|---|---|
+| industry | 8 | Mix of global + some Africa angle |
+| tools | 8 | Mostly global — weak Africa alignment |
+| ai-models | 6 | Mixed — a few Africa-focused |
+| anthropic | 1 | On-brand |
+| **Total** | **23** | |
