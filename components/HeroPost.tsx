@@ -1,6 +1,5 @@
 'use client'
 import Link from 'next/link'
-import Image from 'next/image'
 import CategoryBadge from './CategoryBadge'
 import type { Post } from '@/lib/types'
 
@@ -31,30 +30,34 @@ export default function HeroPost({ post }: { post: Post }) {
           (e.currentTarget as HTMLElement).style.boxShadow = 'none'
         }}
       >
-        <div style={{ position: 'relative', background: '#0d1117' }}>
-          {post.cover_image_url ? (
-            <Image
+        <div
+          style={{
+            position: 'relative',
+            background: 'linear-gradient(135deg, #0f172a 0%, #1e3a5f 50%, #0f172a 100%)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            overflow: 'hidden',
+          }}
+        >
+          {post.cover_image_url && (
+            <img
               src={post.cover_image_url}
               alt={post.title}
-              fill
-              priority
-              unoptimized
-              style={{ objectFit: 'cover' }}
-              sizes="(max-width: 768px) 100vw, 50vw"
-            />
-          ) : (
-            <div
               style={{
+                position: 'absolute',
+                inset: 0,
                 width: '100%',
                 height: '100%',
-                background: 'linear-gradient(135deg, #0f172a 0%, #1e3a5f 50%, #0f172a 100%)',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
+                objectFit: 'cover',
               }}
-            >
-              <span style={{ fontSize: '4rem' }}>⚡</span>
-            </div>
+              onError={(e) => {
+                (e.currentTarget as HTMLImageElement).style.display = 'none'
+              }}
+            />
+          )}
+          {!post.cover_image_url && (
+            <span style={{ fontSize: '4rem' }}>⚡</span>
           )}
         </div>
 

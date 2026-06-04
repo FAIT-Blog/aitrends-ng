@@ -1,7 +1,6 @@
 'use client'
 
 import Link from 'next/link'
-import Image from 'next/image'
 import CategoryBadge from './CategoryBadge'
 import type { Post } from '@/lib/types'
 
@@ -41,30 +40,38 @@ export default function PostCard({ post }: { post: Post }) {
           el.style.boxShadow = 'none'
         }}
       >
-        {post.cover_image_url ? (
-          <div style={{ position: 'relative', aspectRatio: '16/9', width: '100%', background: '#0d1117' }}>
-            <Image
+        <div
+          style={{
+            position: 'relative',
+            aspectRatio: '16/9',
+            width: '100%',
+            background: 'linear-gradient(135deg, #0f172a 0%, #1e3a5f 100%)',
+            overflow: 'hidden',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}
+        >
+          {post.cover_image_url ? (
+            <img
               src={post.cover_image_url}
               alt={post.title}
-              fill
-              unoptimized
-              style={{ objectFit: 'cover' }}
-              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+              loading="lazy"
+              style={{
+                position: 'absolute',
+                inset: 0,
+                width: '100%',
+                height: '100%',
+                objectFit: 'cover',
+              }}
+              onError={(e) => {
+                (e.currentTarget as HTMLImageElement).style.display = 'none'
+              }}
             />
-          </div>
-        ) : (
-          <div
-            style={{
-              aspectRatio: '16/9',
-              background: 'linear-gradient(135deg, #0f172a 0%, #1e3a5f 100%)',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-            }}
-          >
+          ) : (
             <span style={{ color: 'var(--muted)', fontSize: '2rem' }}>⚡</span>
-          </div>
-        )}
+          )}
+        </div>
 
         <div style={{ padding: '16px 18px', display: 'flex', flexDirection: 'column', gap: 8, flex: 1 }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
