@@ -4,7 +4,7 @@ import Link from 'next/link'
 export const metadata: Metadata = {
   title: 'About — AITrends.ng',
   description:
-    "AITrends.ng is an automated AI news digest for African builders. Every post is sourced, rewritten, and published without human intervention.",
+    "AITrends.ng is Africa's autonomous AI news platform — covering the latest AI trends, innovations, and what they mean for builders in Nigeria and across the continent.",
 }
 
 export default function AboutPage() {
@@ -29,7 +29,7 @@ export default function AboutPage() {
         About AITrends.ng
       </h1>
       <p style={{ color: 'var(--blue)', fontWeight: 600, fontSize: '1rem', marginBottom: 40 }}>
-        The African builder&apos;s daily briefing on Claude, Anthropic, and the models shaping what&apos;s next.
+        Africa&apos;s autonomous briefing on AI — today and the next AI trends.
       </p>
 
       <div style={{ display: 'flex', flexDirection: 'column', gap: 40 }}>
@@ -48,10 +48,12 @@ export default function AboutPage() {
             What it is
           </h2>
           <p style={{ color: '#9ca3af', lineHeight: 1.75 }}>
-            AITrends.ng is a fully automated AI news digest blog. It monitors the top sources covering
-            artificial intelligence — Anthropic&apos;s blog, Reddit&apos;s AI communities, Hacker News, and
-            leading AI newsletters — and turns the most important stories into punchy, opinionated
-            briefings targeted at African developers, founders, and builders who follow global AI closely.
+            AITrends.ng is a fully autonomous AI news and blog platform that captures the latest news,
+            events, happenings, innovations, and trends in Artificial Intelligence — with a primary
+            focus on Africa, and Nigeria and West Africa in particular. It monitors Africa-specific tech
+            sources as well as global AI publications, synthesises the most important stories through an
+            African lens, and publishes authoritative, opinionated briefings without any human
+            intervention. No editor. No scheduler. The system runs itself.
           </p>
         </section>
 
@@ -74,12 +76,12 @@ export default function AboutPage() {
               {
                 step: '01',
                 title: 'Scout monitors RSS feeds',
-                body: 'A Node.js cron job (the Scout Agent) runs on a schedule, pulling new items from Anthropic\'s official blog, Reddit\'s r/MachineLearning and r/ClaudeAI, Hacker News, and other curated feeds.',
+                body: 'A Node.js cron job (the Scout Agent) runs every 6 hours, pulling new items from TechCabal, Techpoint Africa, Disrupt Africa, Hacker News, VentureBeat, TechCrunch, Anthropic, OpenAI, Google AI, HuggingFace, Google DeepMind, Mistral AI, and Simon Willison\'s blog.',
               },
               {
                 step: '02',
                 title: 'Gemini rewrites the digest',
-                body: 'Each new story is passed to Gemini 1.5 Flash, which rewrites it in the AITrends.ng voice: punchy, opinionated, useful. Not a summary — a briefing. Scout also prompts Gemini to generate an image prompt tuned to the visual identity.',
+                body: 'Each new story is passed to Gemini 3.5 Flash, which rewrites it through an African lens — what does this mean for builders in Nigeria, Ghana, and across the continent? Punchy, opinionated, Africa-first. Not a summary — a briefing. Gemini also generates a story-first image prompt.',
               },
               {
                 step: '03',
@@ -145,9 +147,10 @@ export default function AboutPage() {
             Who it&apos;s for
           </h2>
           <p style={{ color: '#9ca3af', lineHeight: 1.75 }}>
-            African developers, founders, and AI practitioners who want to stay on top of the Claude
-            and Anthropic ecosystem without spending time hunting across dozens of sources. If you build
-            with APIs, follow model releases, or care about where AI is heading — this is your briefing.
+            Developers, founders, and AI practitioners in Nigeria, Ghana, Kenya, South Africa, and
+            across West Africa who want to stay ahead of the AI curve without spending hours hunting
+            across dozens of global and local sources. If you build products, run a startup, work in
+            tech, or just want to know what AI means for Africa right now — this is your briefing.
           </p>
         </section>
 

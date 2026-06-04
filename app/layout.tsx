@@ -4,9 +4,9 @@ import NavBar from '@/components/NavBar'
 import Footer from '@/components/Footer'
 
 export const metadata: Metadata = {
-  title: 'AITrends.ng — AI news for African builders',
+  title: 'AITrends.ng — Africa\'s AI news, today and next',
   description:
-    "The African builder's daily briefing on Claude, Anthropic, and the models shaping what's next.",
+    "Africa's autonomous briefing on AI — the latest news, trends, and what it means for builders in Nigeria and across the continent.",
   metadataBase: new URL('https://aitrends-ng.vercel.app'),
   openGraph: {
     siteName: 'AITrends.ng',
