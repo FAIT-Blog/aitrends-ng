@@ -38,6 +38,7 @@ export default function HeroPost({ post }: { post: Post }) {
               alt={post.title}
               fill
               priority
+              unoptimized
               style={{ objectFit: 'cover' }}
               sizes="(max-width: 768px) 100vw, 50vw"
             />

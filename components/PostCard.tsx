@@ -47,6 +47,7 @@ export default function PostCard({ post }: { post: Post }) {
               src={post.cover_image_url}
               alt={post.title}
               fill
+              unoptimized
               style={{ objectFit: 'cover' }}
               sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
             />

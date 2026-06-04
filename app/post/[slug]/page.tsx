@@ -93,6 +93,7 @@ export default async function PostPage({ params }: Props) {
             alt={post.title}
             fill
             priority
+            unoptimized
             style={{ objectFit: 'cover' }}
             sizes="(max-width: 800px) 100vw, 800px"
           />
