@@ -1,3 +1,10 @@
+> **NOTE:** This file is the aitrends.ng-specific reference spec.
+> The master spec for the whole AITrends project (both aitrends.ng + scout-agent) lives at:
+> `aitrends-project/CLAUDE.md`
+> Read that file at the start of every session. This file is kept for detailed reference only.
+
+---
+
 # AITrends.ng — Claude Code Project Spec
 **Project:** AITrends.ng Automated AI News Blog  
 **Owner:** Felix Okon  
@@ -393,7 +400,7 @@ All steps below were completed in Session 1:
 - Felix uses npm. Never suggest yarn or pnpm.
 - The project is deployed on Vercel free tier. Do not introduce services that require paid hosting.
 - **Never log real secrets in SESSION_LOG.html.** All keys, tokens, passwords → `[REDACTED]`.
-- **CLAUDE_v1.md is the project spec file.** Read it at the start of every session.
+- **AITRENDS_NG_SPEC.md is the project spec file.** Read it at the start of every session.
 
 ---
 
