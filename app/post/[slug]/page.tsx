@@ -8,6 +8,7 @@ import { supabase } from '@/lib/supabase'
 import type { Post } from '@/lib/types'
 import CategoryBadge from '@/components/CategoryBadge'
 import PostCard from '@/components/PostCard'
+import ShareButtons from '@/components/ShareButtons'
 
 interface Props {
   params: Promise<{ slug: string }>
@@ -192,45 +193,7 @@ export default async function PostPage({ params }: Props) {
       )}
 
       {/* Share */}
-      <div style={{ borderTop: '1px solid var(--border)', paddingTop: 28, marginBottom: 56 }}>
-        <p style={{ color: 'var(--muted)', fontSize: '0.8rem', marginBottom: 12 }}>Share this digest:</p>
-        <div style={{ display: 'flex', gap: 10 }}>
-          <a
-            href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(post.title)}&url=${encodeURIComponent(postUrl)}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{
-              background: 'var(--surface)',
-              border: '1px solid var(--border)',
-              color: 'var(--text)',
-              padding: '8px 16px',
-              borderRadius: 8,
-              fontSize: '0.8rem',
-              fontWeight: 600,
-              textDecoration: 'none',
-            }}
-          >
-            Share on X
-          </a>
-          <a
-            href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(postUrl)}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{
-              background: 'var(--surface)',
-              border: '1px solid var(--border)',
-              color: 'var(--text)',
-              padding: '8px 16px',
-              borderRadius: 8,
-              fontSize: '0.8rem',
-              fontWeight: 600,
-              textDecoration: 'none',
-            }}
-          >
-            LinkedIn
-          </a>
-        </div>
-      </div>
+      <ShareButtons url={postUrl} title={post.title} />
 
       {/* Related posts */}
       {related.length > 0 && (
