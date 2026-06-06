@@ -7,7 +7,6 @@ import Link from 'next/link'
 import { supabase } from '@/lib/supabase'
 import type { Post } from '@/lib/types'
 import CategoryBadge from '@/components/CategoryBadge'
-import PostCard from '@/components/PostCard'
 import ShareButtons from '@/components/ShareButtons'
 
 interface Props {
@@ -230,25 +229,62 @@ export default async function PostPage({ params }: Props) {
       {/* Share */}
       <ShareButtons url={postUrl} title={post.title} />
 
-      {/* Related posts */}
+      {/* People Also Ask — related posts as internal hyperlinks */}
       {related.length > 0 && (
-        <div>
-          <h2
+        <div
+          style={{
+            background: 'var(--surface)',
+            border: '1px solid var(--border)',
+            borderRadius: 10,
+            padding: '20px 24px',
+            marginBottom: 40,
+          }}
+        >
+          <p
             style={{
-              fontFamily: 'Sora, sans-serif',
+              fontSize: '0.72rem',
               fontWeight: 700,
-              fontSize: '1.1rem',
-              color: '#fff',
-              marginBottom: 20,
+              color: 'var(--muted)',
+              textTransform: 'uppercase',
+              letterSpacing: '0.09em',
+              marginBottom: 16,
+              margin: '0 0 16px',
             }}
           >
-            More in {post.category}
-          </h2>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(220px, 1fr))', gap: 20 }}>
-            {related.map((p) => (
-              <PostCard key={p.id} post={p} />
+            People Also Ask
+          </p>
+          <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: 0 }}>
+            {related.map((p, i) => (
+              <li
+                key={p.id}
+                style={{
+                  borderBottom: i < related.length - 1 ? '1px solid var(--border)' : 'none',
+                  paddingBottom: i < related.length - 1 ? 14 : 0,
+                  marginBottom: i < related.length - 1 ? 14 : 0,
+                }}
+              >
+                <Link
+                  href={`/post/${p.slug}`}
+                  style={{
+                    color: 'var(--blue)',
+                    textDecoration: 'none',
+                    fontWeight: 600,
+                    fontSize: '0.92rem',
+                    lineHeight: 1.45,
+                    display: 'block',
+                    marginBottom: p.excerpt ? 4 : 0,
+                  }}
+                >
+                  {p.title}
+                </Link>
+                {p.excerpt && (
+                  <p style={{ color: 'var(--muted)', fontSize: '0.78rem', margin: 0, lineHeight: 1.5 }}>
+                    {p.excerpt}
+                  </p>
+                )}
+              </li>
             ))}
-          </div>
+          </ul>
         </div>
       )}
     </div>
