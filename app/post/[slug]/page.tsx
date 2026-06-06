@@ -40,17 +40,28 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params
   const post = await getPost(slug)
   if (!post) return {}
+  const url = `https://aitrends.ng/post/${post.slug}`
   return {
     title: `${post.title} — AITrends.ng`,
     description: post.excerpt,
+    alternates: { canonical: url },
     openGraph: {
       title: post.title,
       description: post.excerpt,
-      images: post.cover_image_url ? [post.cover_image_url] : [],
-      url: `https://aitrends.ng/post/${post.slug}`,
+      images: post.cover_image_url
+        ? [{ url: post.cover_image_url, alt: post.title }]
+        : [],
+      url,
       type: 'article',
+      publishedTime: post.published_at ?? undefined,
+      tags: post.tags ?? [],
     },
-    twitter: { card: 'summary_large_image', title: post.title, description: post.excerpt },
+    twitter: {
+      card: 'summary_large_image',
+      title: post.title,
+      description: post.excerpt,
+      images: post.cover_image_url ? [post.cover_image_url] : [],
+    },
   }
 }
 
@@ -71,7 +82,31 @@ export default async function PostPage({ params }: Props) {
   const related = await getRelated(post.category, post.id)
   const postUrl = `https://aitrends.ng/post/${post.slug}`
 
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: post.title,
+    description: post.excerpt,
+    image: post.cover_image_url || undefined,
+    datePublished: post.published_at || undefined,
+    dateModified: post.published_at || undefined,
+    author: { '@type': 'Organization', name: 'AITrends.ng', url: 'https://aitrends.ng' },
+    publisher: {
+      '@type': 'Organization',
+      name: 'AITrends.ng',
+      url: 'https://aitrends.ng',
+      logo: { '@type': 'ImageObject', url: 'https://aitrends.ng/logo.png' },
+    },
+    mainEntityOfPage: { '@type': 'WebPage', '@id': postUrl },
+    keywords: post.tags?.join(', ') || post.category,
+  }
+
   return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
     <div style={{ maxWidth: 800, margin: '0 auto', padding: '40px 20px 80px' }}>
       {/* Breadcrumb */}
       <div style={{ marginBottom: 24, fontSize: '0.8rem', color: 'var(--muted)', display: 'flex', gap: 6, alignItems: 'center' }}>
@@ -217,5 +252,6 @@ export default async function PostPage({ params }: Props) {
         </div>
       )}
     </div>
+    </>
   )
 }
