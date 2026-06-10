@@ -72,3 +72,31 @@ code, pre, kbd {
   height: auto;
   margin: 1.5rem 0;
 }
+
+/* ── Mobile responsive ── */
+@media (max-width: 640px) {
+  /* Hero post: stack image above text on mobile */
+  .hero-article {
+    grid-template-columns: 1fr !important;
+  }
+  .hero-article .hero-image {
+    min-height: 220px;
+  }
+  .hero-article .hero-text {
+    padding: 20px 18px !important;
+  }
+  .hero-article .hero-text h2 {
+    font-size: 1.15rem !important;
+  }
+
+  /* Nav: scroll horizontally instead of wrapping */
+  .site-nav {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .site-nav::-webkit-scrollbar { display: none; }
+  .site-nav a {
+    white-space: nowrap;
+  }
+}

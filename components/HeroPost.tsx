@@ -12,6 +12,7 @@ export default function HeroPost({ post }: { post: Post }) {
   return (
     <Link href={`/post/${post.slug}`} style={{ textDecoration: 'none', display: 'block' }}>
       <article
+        className="hero-article"
         style={{
           background: 'var(--surface)',
           border: '1px solid var(--border)',
@@ -31,6 +32,7 @@ export default function HeroPost({ post }: { post: Post }) {
         }}
       >
         <div
+          className="hero-image"
           style={{
             position: 'relative',
             background: 'linear-gradient(135deg, #0f172a 0%, #1e3a5f 50%, #0f172a 100%)',
@@ -62,6 +64,7 @@ export default function HeroPost({ post }: { post: Post }) {
         </div>
 
         <div
+          className="hero-text"
           style={{
             padding: '36px 40px',
             display: 'flex',

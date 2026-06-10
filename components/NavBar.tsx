@@ -23,7 +23,7 @@ export default function NavBar() {
             </span>
           </Link>
 
-          <nav style={{ display: 'flex', gap: 4 }}>
+          <nav className="site-nav" style={{ display: 'flex', gap: 4 }}>
             {CATEGORIES.map((cat) => (
               <Link
                 key={cat.href}
