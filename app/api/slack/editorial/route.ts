@@ -129,5 +129,30 @@ export async function POST(req: NextRequest) {
   }
 
   console.log(`[editorial] Queued: ${urls.length} URL(s), note: "${plainText.slice(0, 60)}"`)
+
+  // Trigger Phase 1 immediately so the editorial input is processed now,
+  // not at the next 6-hour cron tick. Non-blocking — a dispatch failure
+  // never breaks the webhook response; the input is already safely in the DB
+  // and will be picked up by the scheduled run at worst.
+  const pat = process.env.GITHUB_PAT
+  if (pat) {
+    fetch(
+      'https://api.github.com/repos/FAIT-Blog/scout-agent/actions/workflows/scout.yml/dispatches',
+      {
+        method: 'POST',
+        headers: {
+          Authorization:  `Bearer ${pat}`,
+          Accept:         'application/vnd.github+json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ ref: 'main' }),
+      }
+    )
+      .then(r => console.log(`[editorial] Phase 1 dispatch: HTTP ${r.status}`))
+      .catch(e => console.error(`[editorial] Phase 1 dispatch failed: ${e.message}`))
+  } else {
+    console.warn('[editorial] GITHUB_PAT not set — Phase 1 will run on next cron tick')
+  }
+
   return NextResponse.json({ ok: true })
 }
