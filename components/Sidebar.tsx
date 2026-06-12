@@ -122,19 +122,17 @@ export default function Sidebar({ recentPosts, categoryCounts }: SidebarProps) {
           >
             Latest Posts
           </h3>
-          <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: 2 }}>
+          <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
             {recentPosts.slice(0, 5).map((post) => (
-              <li key={post.id}>
+              <li key={post.id} style={{ borderBottom: '1px solid var(--border)', padding: '14px 0' }}>
                 <Link
                   href={`/post/${post.slug}`}
                   style={{
                     display: '-webkit-box',
-                    padding: '8px 0',
-                    borderBottom: '1px solid var(--border)',
                     color: 'var(--text)',
                     textDecoration: 'none',
                     fontSize: '0.82rem',
-                    lineHeight: 1.45,
+                    lineHeight: 1.65,
                     overflow: 'hidden',
                     WebkitLineClamp: 2,
                     WebkitBoxOrient: 'vertical',
