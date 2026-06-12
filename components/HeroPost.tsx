@@ -109,11 +109,13 @@ export default function HeroPost({ post }: { post: Post }) {
           </p>
 
           <span
+            className="read-more"
             style={{
               color: 'var(--blue)',
               fontSize: '0.82rem',
               fontWeight: 600,
               marginTop: 4,
+              transition: 'color 0.18s, text-shadow 0.18s',
             }}
           >
             Read digest →

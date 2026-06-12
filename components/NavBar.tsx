@@ -17,7 +17,7 @@ export default function NavBar() {
     <header style={{ borderBottom: '1px solid var(--border)', background: 'var(--bg)' }}>
       <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 20px' }}>
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: 60 }}>
-          <Link href="/" style={{ textDecoration: 'none' }}>
+          <Link href="/" className="nav-logo" style={{ textDecoration: 'none' }}>
             <span style={{ fontFamily: 'Sora, sans-serif', fontWeight: 700, fontSize: '1.15rem', color: 'var(--blue)' }}>
               AITrends<span style={{ color: 'var(--gold)' }}>.ng</span>
             </span>

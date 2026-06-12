@@ -18,6 +18,7 @@ export default function PostCard({ post }: { post: Post }) {
   return (
     <Link href={`/post/${post.slug}`} style={{ textDecoration: 'none' }}>
       <article
+        className="post-card"
         style={{
           background: 'var(--surface)',
           border: '1px solid var(--border)',
@@ -84,6 +85,7 @@ export default function PostCard({ post }: { post: Post }) {
           </div>
 
           <h3
+            className="post-title"
             style={{
               fontFamily: 'Sora, sans-serif',
               fontWeight: 700,
@@ -95,6 +97,7 @@ export default function PostCard({ post }: { post: Post }) {
               WebkitBoxOrient: 'vertical',
               overflow: 'hidden',
               margin: 0,
+              transition: 'color 0.18s, text-shadow 0.18s',
             }}
           >
             {post.title}

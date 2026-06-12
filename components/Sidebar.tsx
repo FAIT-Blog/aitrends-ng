@@ -78,6 +78,7 @@ export default function Sidebar({ recentPosts, categoryCounts }: SidebarProps) {
             <li key={cat.slug}>
               <Link
                 href={`/category/${cat.slug}`}
+                className="link-hover-glow"
                 style={{
                   display: 'flex',
                   justifyContent: 'space-between',
@@ -127,6 +128,7 @@ export default function Sidebar({ recentPosts, categoryCounts }: SidebarProps) {
               <li key={post.id} style={{ borderBottom: '1px solid var(--border)', padding: '14px 0' }}>
                 <Link
                   href={`/post/${post.slug}`}
+                  className="link-hover-glow"
                   style={{
                     display: '-webkit-box',
                     color: 'var(--text)',
