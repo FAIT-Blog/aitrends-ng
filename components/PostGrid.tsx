@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect, useRef, useCallback } from 'react'
 import PostCard from './PostCard'
 import type { Post } from '@/lib/types'
 
@@ -8,6 +8,30 @@ const PAGE_SIZE = 9
 
 export default function PostGrid({ posts }: { posts: Post[] }) {
   const [visible, setVisible] = useState(PAGE_SIZE)
+  const sentinelRef = useRef<HTMLDivElement>(null)
+  const hasMore = visible < posts.length
+
+  const loadMore = useCallback(() => {
+    setVisible(v => Math.min(v + PAGE_SIZE, posts.length))
+  }, [posts.length])
+
+  useEffect(() => {
+    const sentinel = sentinelRef.current
+    if (!sentinel || !hasMore) return
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) loadMore()
+      },
+      // 300px lookahead — triggers before the sentinel is visible so cards
+      // appear before the user reaches the bottom. Feels seamless on mobile
+      // where finger-flick scrolling covers large distances quickly.
+      { rootMargin: '300px' }
+    )
+
+    observer.observe(sentinel)
+    return () => observer.disconnect()
+  }, [hasMore, loadMore])
 
   if (posts.length === 0) {
     return (
@@ -31,27 +55,23 @@ export default function PostGrid({ posts }: { posts: Post[] }) {
         ))}
       </div>
 
-      {visible < posts.length && (
-        <div style={{ textAlign: 'center', marginTop: 40 }}>
-          <button
-            onClick={() => setVisible((v) => v + PAGE_SIZE)}
-            style={{
-              background: 'var(--surface)',
-              border: '1px solid var(--border)',
-              color: 'var(--text)',
-              padding: '10px 28px',
-              borderRadius: 8,
-              fontSize: '0.88rem',
-              fontWeight: 600,
-              cursor: 'pointer',
-              transition: 'border-color 0.15s',
-            }}
-            onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.borderColor = 'var(--blue)')}
-            onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.borderColor = 'var(--border)')}
-          >
-            Load more ({posts.length - visible} remaining)
-          </button>
-        </div>
+      {/* Sentinel — zero-height element watched by IntersectionObserver.
+          Only rendered when more posts remain so the observer is disconnected
+          once everything is loaded, freeing resources. */}
+      {hasMore && (
+        <div ref={sentinelRef} style={{ height: 1, marginTop: 48 }} aria-hidden="true" />
+      )}
+
+      {!hasMore && posts.length > PAGE_SIZE && (
+        <p style={{
+          textAlign: 'center',
+          marginTop: 48,
+          color: 'var(--muted)',
+          fontSize: '0.78rem',
+          letterSpacing: '0.05em',
+        }}>
+          — {posts.length} posts loaded —
+        </p>
       )}
     </div>
   )
