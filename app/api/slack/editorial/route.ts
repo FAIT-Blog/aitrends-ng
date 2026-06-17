@@ -13,8 +13,22 @@
 //   4. Copy "Signing Secret" → Vercel env var: SLACK_SIGNING_SECRET
 
 import { NextRequest, NextResponse } from 'next/server'
-import { createClient } from '@supabase/supabase-js'
+import { createClient, SupabaseClient } from '@supabase/supabase-js'
 import crypto from 'crypto'
+
+// Module-level singleton — one connection pool shared across all webhook invocations.
+// Instantiating createClient() inside the POST handler creates a new pool on every
+// Slack message, which exhausts Supabase connections under load.
+let _adminClient: SupabaseClient | null = null
+function getAdminClient(): SupabaseClient {
+  if (!_adminClient) {
+    _adminClient = createClient(
+      process.env.NEXT_PUBLIC_SUPABASE_URL!,
+      process.env.SUPABASE_SECRET_KEY!
+    )
+  }
+  return _adminClient
+}
 
 function extractUrls(text: string): string[] {
   const slackWrapped = /<(https?:\/\/[^|>\s]+)[^>]*>/g
@@ -107,10 +121,7 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ ok: true })
   }
 
-  const supabase = createClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.SUPABASE_SECRET_KEY!
-  )
+  const supabase = getAdminClient()
 
   const { error } = await supabase.from('editorial_queue').insert({
     slack_ts:      event.ts as string,

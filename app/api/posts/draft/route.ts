@@ -1,11 +1,32 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createPost } from '@/lib/createPost'
+import crypto from 'crypto'
 
 const VALID_CATEGORIES = ['ai-models', 'anthropic', 'industry', 'tools']
 
+function safeCompare(a: string, b: string): boolean {
+  if (a.length !== b.length) return false
+  try {
+    return crypto.timingSafeEqual(Buffer.from(a), Buffer.from(b))
+  } catch {
+    return false
+  }
+}
+
+function isSafeUrl(val: unknown): string {
+  if (typeof val !== 'string' || !val) return ''
+  try {
+    const u = new URL(val)
+    return ['https:', 'http:'].includes(u.protocol) ? val : ''
+  } catch {
+    return ''
+  }
+}
+
 export async function POST(req: NextRequest) {
   const apiKey = req.headers.get('x-api-key')
-  if (!apiKey || apiKey !== process.env.SCOUT_API_KEY) {
+  const expectedKey = process.env.SCOUT_API_KEY ?? ''
+  if (!apiKey || !expectedKey || !safeCompare(apiKey, expectedKey)) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
   }
 
@@ -42,10 +63,12 @@ export async function POST(req: NextRequest) {
         excerpt,
         category: category as 'ai-models' | 'anthropic' | 'industry' | 'tools',
         tags: Array.isArray(body.tags) ? (body.tags as string[]) : [],
-        cover_image_url: typeof body.cover_image_url === 'string' ? body.cover_image_url : '',
+        cover_image_url: isSafeUrl(body.cover_image_url),
         cover_image_prompt:
           typeof body.cover_image_prompt === 'string' ? body.cover_image_prompt : '',
-        source_urls: Array.isArray(body.source_urls) ? (body.source_urls as string[]) : [],
+        source_urls: Array.isArray(body.source_urls)
+          ? (body.source_urls as unknown[]).map(isSafeUrl).filter(Boolean) as string[]
+          : [],
         auto_generated: body.auto_generated === true,
       },
       'draft'
