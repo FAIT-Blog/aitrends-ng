@@ -45,7 +45,7 @@ export default function HeroPost({ post }: { post: Post }) {
           {post.cover_image_url && (
             <img
               src={post.cover_image_url}
-              alt={post.title}
+              alt={post.cover_image_prompt || post.title}
               style={{
                 position: 'absolute',
                 inset: 0,

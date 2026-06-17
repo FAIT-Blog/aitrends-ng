@@ -76,7 +76,7 @@ export default function AboutPage() {
               {
                 step: '01',
                 title: 'Scout monitors RSS feeds',
-                body: 'A Node.js cron job (the Scout Agent) runs every 6 hours, pulling new items from TechCabal, Techpoint Africa, Disrupt Africa, Hacker News, VentureBeat, TechCrunch, Anthropic, OpenAI, Google AI, HuggingFace, Google DeepMind, Mistral AI, and Simon Willison\'s blog.',
+                body: 'A Node.js cron job (the Scout Agent) runs every 6 hours, pulling new items from TechCabal, Techpoint Africa, Disrupt Africa, Premium Times Nigeria, BusinessDay Nigeria, Hacker News, VentureBeat, TechCrunch, Anthropic, OpenAI, Google AI, HuggingFace, Google DeepMind, and more — 25 feeds across Africa and globally.',
               },
               {
                 step: '02',
@@ -85,8 +85,8 @@ export default function AboutPage() {
               },
               {
                 step: '03',
-                title: 'Pollinations generates the cover image',
-                body: 'The image prompt is sent to Pollinations.ai, which renders a clean tech illustration in the AITrends.ng style: dark background, electric blue and gold accents, no text in the image.',
+                title: 'FLUX generates the cover image',
+                body: 'The image prompt is sent to HuggingFace FLUX.1-schnell, which generates a story-specific editorial illustration — watercolour, vector, ink sketch, or risograph. The image is permanently stored in Supabase Storage, not a lazy URL. Africa-first scenes only; no generic stock photo compositions.',
               },
               {
                 step: '04',

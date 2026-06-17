@@ -125,10 +125,9 @@ export default async function PostPage({ params }: Props) {
         <div style={{ position: 'relative', aspectRatio: '16/9', marginBottom: 36, borderRadius: 12, overflow: 'hidden' }}>
           <Image
             src={post.cover_image_url}
-            alt={post.title}
+            alt={post.cover_image_prompt || post.title}
             fill
             priority
-            unoptimized
             style={{ objectFit: 'cover' }}
             sizes="(max-width: 800px) 100vw, 800px"
           />
@@ -217,7 +216,7 @@ export default async function PostPage({ params }: Props) {
           <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: 4 }}>
             {post.source_urls.map((url) => (
               <li key={url}>
-                <a href={url} target="_blank" rel="noopener noreferrer" style={{ color: 'var(--blue)', fontSize: '0.8rem', wordBreak: 'break-all' }}>
+                <a href={url} target="_blank" rel="noopener noreferrer nofollow" style={{ color: 'var(--blue)', fontSize: '0.8rem', wordBreak: 'break-all' }}>
                   {url}
                 </a>
               </li>
