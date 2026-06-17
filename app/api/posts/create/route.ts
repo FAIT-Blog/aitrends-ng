@@ -1,6 +1,26 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createPost } from '@/lib/createPost'
 import crypto from 'crypto'
+import sanitizeHtml from 'sanitize-html'
+
+// Allowlist matches what Gemini currently generates (h3, p, strong) plus safe
+// additions for future content. Strips script, iframe, style, on* handlers,
+// and javascript:/data: URLs automatically via sanitize-html defaults.
+const SANITIZE_OPTIONS: sanitizeHtml.IOptions = {
+  allowedTags: [
+    'h2', 'h3', 'h4',
+    'p', 'br',
+    'strong', 'em',
+    'ul', 'ol', 'li',
+    'a', 'blockquote', 'hr',
+  ],
+  allowedAttributes: {
+    a: ['href', 'target', 'rel'],
+  },
+  allowedSchemesByTag: {
+    a: ['https', 'http', 'mailto'],
+  },
+}
 
 const VALID_CATEGORIES = ['ai-models', 'anthropic', 'industry', 'tools']
 
@@ -61,7 +81,7 @@ export async function POST(req: NextRequest) {
     const { post_id, slug } = await createPost(
       {
         title,
-        content,
+        content: sanitizeHtml(content as string, SANITIZE_OPTIONS),
         excerpt,
         category: category as 'ai-models' | 'anthropic' | 'industry' | 'tools',
         tags: Array.isArray(body.tags) ? (body.tags as string[]) : [],
