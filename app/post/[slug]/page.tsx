@@ -73,6 +73,11 @@ function readTime(content: string) {
   return Math.max(1, Math.round(content.replace(/<[^>]+>/g, '').split(/\s+/).length / 200))
 }
 
+function wasUpdated(published: string | null, updated: string | null | undefined): boolean {
+  if (!published || !updated) return false
+  return (new Date(updated).getTime() - new Date(published).getTime()) > 86_400_000
+}
+
 export default async function PostPage({ params }: Props) {
   const { slug } = await params
   const post = await getPost(slug)
@@ -88,7 +93,7 @@ export default async function PostPage({ params }: Props) {
     description: post.excerpt,
     image: post.cover_image_url || undefined,
     datePublished: post.published_at || undefined,
-    dateModified: post.published_at || undefined,
+    dateModified: post.updated_at || post.published_at || undefined,
     author: { '@type': 'Organization', name: 'AITrends.ng', url: 'https://aitrends.ng' },
     publisher: {
       '@type': 'Organization',
@@ -137,7 +142,10 @@ export default async function PostPage({ params }: Props) {
       {/* Meta */}
       <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 20, flexWrap: 'wrap' }}>
         <CategoryBadge category={post.category} />
-        <span style={{ color: 'var(--muted)', fontSize: '0.8rem' }}>{formatDate(post.published_at)}</span>
+        <span style={{ color: 'var(--muted)', fontSize: '0.8rem' }}>Published {formatDate(post.published_at)}</span>
+        {wasUpdated(post.published_at, post.updated_at) && (
+          <span style={{ color: 'var(--muted)', fontSize: '0.8rem' }}>· Updated {formatDate(post.updated_at ?? null)}</span>
+        )}
         <span style={{ color: 'var(--muted)', fontSize: '0.8rem' }}>{readTime(post.content)} min read</span>
         {post.auto_generated && (
           <span

@@ -13,4 +13,5 @@ export interface Post {
   auto_generated: boolean
   created_at: string
   published_at: string | null
+  updated_at?: string | null
 }
