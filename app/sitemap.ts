@@ -3,7 +3,7 @@ export const dynamic = 'force-dynamic'
 import type { MetadataRoute } from 'next'
 import { supabase } from '@/lib/supabase'
 
-const SITE_URL = 'https://aitrends.ng'
+const SITE_URL = 'https://www.aitrends.ng'
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const { data: posts } = await supabase

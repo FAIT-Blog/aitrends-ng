@@ -96,7 +96,7 @@ export async function POST(req: NextRequest) {
       'published'
     )
 
-    const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://aitrends.ng'
+    const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://www.aitrends.ng'
 
     return NextResponse.json({
       success: true,

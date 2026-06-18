@@ -1,7 +1,7 @@
 import { supabase } from '@/lib/supabase'
 import type { Post } from '@/lib/types'
 
-const SITE_URL = 'https://aitrends.ng'
+const SITE_URL = 'https://www.aitrends.ng'
 
 export async function GET() {
   const { data } = await supabase

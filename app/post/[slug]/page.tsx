@@ -39,7 +39,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params
   const post = await getPost(slug)
   if (!post) return {}
-  const url = `https://aitrends.ng/post/${post.slug}`
+  const url = `https://www.aitrends.ng/post/${post.slug}`
   return {
     title: `${post.title} — AITrends.ng`,
     description: post.excerpt,
@@ -84,7 +84,7 @@ export default async function PostPage({ params }: Props) {
   if (!post) notFound()
 
   const related = await getRelated(post.category, post.id)
-  const postUrl = `https://aitrends.ng/post/${post.slug}`
+  const postUrl = `https://www.aitrends.ng/post/${post.slug}`
 
   const jsonLd = {
     '@context': 'https://schema.org',
@@ -94,12 +94,12 @@ export default async function PostPage({ params }: Props) {
     image: post.cover_image_url || undefined,
     datePublished: post.published_at || undefined,
     dateModified: post.updated_at || post.published_at || undefined,
-    author: { '@type': 'Organization', name: 'AITrends.ng', url: 'https://aitrends.ng' },
+    author: { '@type': 'Organization', name: 'AITrends.ng', url: 'https://www.aitrends.ng' },
     publisher: {
       '@type': 'Organization',
       name: 'AITrends.ng',
-      url: 'https://aitrends.ng',
-      logo: { '@type': 'ImageObject', url: 'https://aitrends.ng/logo.png' },
+      url: 'https://www.aitrends.ng',
+      logo: { '@type': 'ImageObject', url: 'https://www.aitrends.ng/logo.png' },
     },
     mainEntityOfPage: { '@type': 'WebPage', '@id': postUrl },
     keywords: post.tags?.join(', ') || post.category,
