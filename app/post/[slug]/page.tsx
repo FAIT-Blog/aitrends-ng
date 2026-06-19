@@ -165,22 +165,6 @@ export default async function PostPage({ params }: Props) {
           <span style={{ color: 'var(--muted)', fontSize: '0.8rem' }}>· Updated {formatDate(post.updated_at ?? null)}</span>
         )}
         <span style={{ color: 'var(--muted)', fontSize: '0.8rem' }}>{readTime(post.content)} min read</span>
-        {post.auto_generated && (
-          <span
-            style={{
-              background: '#1c1917',
-              color: '#a16207',
-              fontSize: '0.68rem',
-              fontWeight: 700,
-              padding: '2px 8px',
-              borderRadius: 4,
-              textTransform: 'uppercase',
-              letterSpacing: '0.06em',
-            }}
-          >
-            AI Generated
-          </span>
-        )}
       </div>
 
       {/* Title */}

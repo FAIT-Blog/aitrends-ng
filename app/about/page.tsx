@@ -80,18 +80,18 @@ export default function AboutPage() {
               },
               {
                 step: '02',
-                title: 'Gemini rewrites the digest',
-                body: 'Each new story is passed to Gemini 3.5 Flash, which rewrites it through an African lens — what does this mean for builders in Nigeria, Ghana, and across the continent? Punchy, opinionated, Africa-first. Not a summary — a briefing. Gemini also generates a story-first image prompt.',
+                title: 'Editorial rewrite',
+                body: 'Each new story is rewritten through an African lens — what does this mean for builders in Nigeria, Ghana, and across the continent? Punchy, opinionated, Africa-first. Not a summary — a briefing.',
               },
               {
                 step: '03',
-                title: 'FLUX generates the cover image',
-                body: 'The image prompt is sent to HuggingFace FLUX.1-schnell, which generates a story-specific editorial illustration — watercolour, vector, ink sketch, or risograph. The image is permanently stored in Supabase Storage, not a lazy URL. Africa-first scenes only; no generic stock photo compositions.',
+                title: 'Cover image generated',
+                body: 'A story-specific editorial illustration is generated for each post — watercolour, vector, ink sketch, or risograph. Africa-first scenes only; no generic stock photo compositions. The image is permanently stored, not a lazy URL.',
               },
               {
                 step: '04',
                 title: 'The post goes live',
-                body: 'Scout calls the protected /api/posts/create endpoint, which validates the payload, generates a URL-safe slug, stores the post in Supabase, and makes it live instantly on aitrends.ng.',
+                body: 'The pipeline publishes directly to aitrends.ng — validates the payload, generates a URL-safe slug, stores the post, and makes it live instantly.',
               },
               {
                 step: '05',
@@ -174,10 +174,7 @@ export default function AboutPage() {
             A note on automation
           </h2>
           <p style={{ color: '#9ca3af', lineHeight: 1.75 }}>
-            Every post on AITrends.ng is AI-generated and carries an <em style={{ color: 'var(--muted)' }}>AI digest</em> badge.
-            We are transparent about this. The goal is speed and coverage — getting you the signal from
-            the noise, faster. The source URLs are always listed at the bottom of each post so you can
-            go deeper on any story.
+            AITrends.ng is an autonomous news platform. Our editorial pipeline monitors 25+ feeds, selects the most relevant AI stories for the African context, and publishes continuously. The goal is speed and coverage — getting you the signal from the noise, faster. Source URLs are always listed at the bottom of each post so you can go deeper on any story.
           </p>
         </section>
 

@@ -77,11 +77,6 @@ export default function PostCard({ post }: { post: Post }) {
         <div style={{ padding: '16px 18px', display: 'flex', flexDirection: 'column', gap: 8, flex: 1 }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
             <CategoryBadge category={post.category} />
-            {post.auto_generated && (
-              <span style={{ fontSize: '0.65rem', color: 'var(--muted)', letterSpacing: '0.04em' }}>
-                · AI digest
-              </span>
-            )}
           </div>
 
           <h3

@@ -13,7 +13,7 @@ export default function Footer() {
         {' '}— Today and the next AI trends
       </p>
       <p style={{ color: 'var(--muted)', fontSize: '0.75rem' }}>
-        by <span style={{ color: 'var(--blue)' }}>FAIT</span> · Auto-generated digests · <a href="/feed.xml" style={{ color: 'var(--muted)' }}>RSS</a>
+        <a href="/feed.xml" style={{ color: 'var(--muted)' }}>RSS</a>
       </p>
     </footer>
   )
