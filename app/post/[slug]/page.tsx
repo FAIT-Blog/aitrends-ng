@@ -101,7 +101,7 @@ export default async function PostPage({ params }: Props) {
 
   const related = await getRelated(post.category, post.id)
   const postUrl = `https://www.aitrends.ng/post/${post.slug}`
-  const youtubeId = post.source_urls.length > 0 ? extractYouTubeId(post.source_urls[0]) : null
+  const youtubeId = post.category === 'ai' && post.source_urls.length > 0 ? extractYouTubeId(post.source_urls[0]) : null
   const processedContent = youtubeId ? injectYouTubeEmbed(post.content, youtubeId) : post.content
 
   const jsonLd = {
