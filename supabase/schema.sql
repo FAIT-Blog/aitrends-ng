@@ -14,7 +14,7 @@ create table if not exists posts (
   content          text not null default '',
   excerpt          text not null default '',
   category         text not null default 'industry'
-                   check (category in ('ai-models','anthropic','industry','tools')),
+                   check (category in ('ai-models','anthropic','industry','tools','ai')),
   tags             text[] not null default '{}',
   cover_image_url  text not null default '',
   cover_image_prompt text not null default '',
