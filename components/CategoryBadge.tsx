@@ -3,6 +3,7 @@ const COLOURS: Record<string, { bg: string; color: string }> = {
   'ai-models':{ bg: '#064e3b', color: '#34d399' },
   industry:   { bg: '#1c1917', color: '#f59e0b' },
   tools:      { bg: '#172554', color: '#60a5fa' },
+  ai:         { bg: '#1a1a2e', color: '#e879f9' },
 }
 
 const LABELS: Record<string, string> = {
@@ -10,6 +11,7 @@ const LABELS: Record<string, string> = {
   'ai-models': 'AI Models',
   industry:    'Industry',
   tools:       'Tools',
+  ai:          'AI Trends',
 }
 
 export default function CategoryBadge({ category }: { category: string }) {

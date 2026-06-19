@@ -6,6 +6,7 @@ const CATEGORIES = [
   { slug: 'ai-models', label: 'AI Models' },
   { slug: 'industry', label: 'Industry' },
   { slug: 'tools', label: 'Tools' },
+  { slug: 'ai', label: 'AI Trends' },
 ]
 
 interface SidebarProps {

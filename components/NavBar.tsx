@@ -8,6 +8,7 @@ const CATEGORIES = [
   { label: 'AI Models', href: '/category/ai-models' },
   { label: 'Industry', href: '/category/industry' },
   { label: 'Tools', href: '/category/tools' },
+  { label: 'AI Trends', href: '/category/ai' },
 ]
 
 export default function NavBar() {

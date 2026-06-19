@@ -61,7 +61,7 @@ export async function POST(req: NextRequest) {
         title,
         content,
         excerpt,
-        category: category as 'ai-models' | 'anthropic' | 'industry' | 'tools',
+        category: category as 'ai-models' | 'anthropic' | 'industry' | 'tools' | 'ai',
         tags: Array.isArray(body.tags) ? (body.tags as string[]) : [],
         cover_image_url: isSafeUrl(body.cover_image_url),
         cover_image_prompt:

@@ -29,6 +29,10 @@ const CATEGORY_META: Record<string, { label: string; description: string }> = {
     label: 'Tools',
     description: 'Developer tools, APIs, SDKs, and products powered by AI that are worth your attention.',
   },
+  ai: {
+    label: 'AI Trends',
+    description: 'Long-form AI conversations and podcast episodes — distilled into structured briefings for builders.',
+  },
 }
 
 const VALID = Object.keys(CATEGORY_META)
