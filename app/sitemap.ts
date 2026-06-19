@@ -19,6 +19,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${SITE_URL}/category/ai-models`, lastModified: new Date(), changeFrequency: 'daily', priority: 0.8 },
     { url: `${SITE_URL}/category/industry`, lastModified: new Date(), changeFrequency: 'daily', priority: 0.8 },
     { url: `${SITE_URL}/category/tools`, lastModified: new Date(), changeFrequency: 'daily', priority: 0.8 },
+    { url: `${SITE_URL}/category/ai`, lastModified: new Date(), changeFrequency: 'daily', priority: 0.8 },
   ]
 
   const postRoutes: MetadataRoute.Sitemap = (posts ?? []).map((post) => ({

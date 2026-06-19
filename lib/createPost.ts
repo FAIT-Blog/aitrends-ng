@@ -5,7 +5,7 @@ export interface PostPayload {
   title: string
   content: string
   excerpt: string
-  category: 'ai-models' | 'anthropic' | 'industry' | 'tools'
+  category: 'ai-models' | 'anthropic' | 'industry' | 'tools' | 'ai'
   tags?: string[]
   cover_image_url?: string
   cover_image_prompt?: string

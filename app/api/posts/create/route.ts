@@ -13,16 +13,18 @@ const SANITIZE_OPTIONS: sanitizeHtml.IOptions = {
     'strong', 'em',
     'ul', 'ol', 'li',
     'a', 'blockquote', 'hr',
+    'div',
   ],
   allowedAttributes: {
     a: ['href', 'target', 'rel'],
+    div: ['data-youtube'],
   },
   allowedSchemesByTag: {
     a: ['https', 'http', 'mailto'],
   },
 }
 
-const VALID_CATEGORIES = ['ai-models', 'anthropic', 'industry', 'tools']
+const VALID_CATEGORIES = ['ai-models', 'anthropic', 'industry', 'tools', 'ai']
 
 // Constant-time comparison — prevents timing attacks on the API key
 function safeCompare(a: string, b: string): boolean {
@@ -83,7 +85,7 @@ export async function POST(req: NextRequest) {
         title,
         content: sanitizeHtml(content as string, SANITIZE_OPTIONS),
         excerpt,
-        category: category as 'ai-models' | 'anthropic' | 'industry' | 'tools',
+        category: category as 'ai-models' | 'anthropic' | 'industry' | 'tools' | 'ai',
         tags: Array.isArray(body.tags) ? (body.tags as string[]) : [],
         cover_image_url: isSafeUrl(body.cover_image_url),
         cover_image_prompt:

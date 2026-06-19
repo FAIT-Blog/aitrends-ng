@@ -78,6 +78,22 @@ function wasUpdated(published: string | null, updated: string | null | undefined
   return (new Date(updated).getTime() - new Date(published).getTime()) > 86_400_000
 }
 
+function extractYouTubeId(url: string): string | null {
+  const m = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/)([^&?/]+)/)
+  return m ? m[1] : null
+}
+
+function injectYouTubeEmbed(content: string, videoId: string): string {
+  const embed = `<div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:8px;margin:28px 0">` +
+    `<iframe src="https://www.youtube-nocookie.com/embed/${videoId}?rel=0&modestbranding=1" ` +
+    `loading="lazy" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0" ` +
+    `allow="accelerometer;clipboard-write;encrypted-media;gyroscope;picture-in-picture" allowfullscreen></iframe>` +
+    `</div>` +
+    `<p style="text-align:center;font-size:0.78rem;color:var(--muted);margin-top:-16px;margin-bottom:28px">` +
+    `Prefer watching? Here&apos;s the complete conversation.</p>`
+  return content.replace('<div data-youtube=""></div>', embed)
+}
+
 export default async function PostPage({ params }: Props) {
   const { slug } = await params
   const post = await getPost(slug)
@@ -85,6 +101,8 @@ export default async function PostPage({ params }: Props) {
 
   const related = await getRelated(post.category, post.id)
   const postUrl = `https://www.aitrends.ng/post/${post.slug}`
+  const youtubeId = post.source_urls.length > 0 ? extractYouTubeId(post.source_urls[0]) : null
+  const processedContent = youtubeId ? injectYouTubeEmbed(post.content, youtubeId) : post.content
 
   const jsonLd = {
     '@context': 'https://schema.org',
@@ -182,7 +200,7 @@ export default async function PostPage({ params }: Props) {
       {/* Body */}
       <div
         className="prose"
-        dangerouslySetInnerHTML={{ __html: post.content }}
+        dangerouslySetInnerHTML={{ __html: processedContent }}
         style={{ marginBottom: 40 }}
       />
 
@@ -207,8 +225,8 @@ export default async function PostPage({ params }: Props) {
         </div>
       )}
 
-      {/* Sources */}
-      {post.source_urls.length > 0 && (
+      {/* Sources — hidden for YouTube/podcast posts (attribution is in the content Source block) */}
+      {post.source_urls.length > 0 && !youtubeId && (
         <div
           style={{
             background: 'var(--surface)',

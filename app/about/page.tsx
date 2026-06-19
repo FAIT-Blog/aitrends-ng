@@ -98,6 +98,11 @@ export default function AboutPage() {
                 title: 'Slack notification',
                 body: 'Felix gets a Slack message with the post title, cover image preview, and a direct link — so he can stay informed without having to check the site.',
               },
+              {
+                step: '06',
+                title: 'AI Podcast Digests',
+                body: 'A separate pipeline monitors YouTube channels — Ethan Mollick, The Diary Of A CEO, theMITmonk, Mo Gawdat, Silicon Valley Girl, Udacity, and more — and converts long-form AI podcast episodes into structured blog posts: Overview, Key Takeaways, Main Ideas, Notable Quotes, Practical Applications, and Final Thoughts. Full video embedded inline. Published under the AI category.',
+              },
             ].map((item) => (
               <div
                 key={item.step}
