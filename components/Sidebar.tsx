@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import type { Post } from '@/lib/types'
+import NewsletterSignup from '@/components/NewsletterSignup'
 
 const CATEGORIES = [
   { slug: 'anthropic', label: 'Anthropic' },
@@ -51,6 +52,8 @@ export default function Sidebar({ recentPosts, categoryCounts }: SidebarProps) {
           Learn how it works →
         </Link>
       </div>
+
+      <NewsletterSignup />
 
       {/* Categories */}
       <div

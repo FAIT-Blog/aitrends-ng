@@ -8,6 +8,7 @@ import { supabase } from '@/lib/supabase'
 import type { Post } from '@/lib/types'
 import CategoryBadge from '@/components/CategoryBadge'
 import ShareButtons from '@/components/ShareButtons'
+import FeedbackForm from '@/components/FeedbackForm'
 
 interface Props {
   params: Promise<{ slug: string }>
@@ -296,6 +297,8 @@ export default async function PostPage({ params }: Props) {
           </ul>
         </div>
       )}
+      {/* Feedback */}
+      <FeedbackForm postSlug={slug} />
     </div>
     </>
   )

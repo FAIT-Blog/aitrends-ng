@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import './globals.css'
 import NavBar from '@/components/NavBar'
 import Footer from '@/components/Footer'
+import { Analytics } from '@vercel/analytics/next'
 
 export const metadata: Metadata = {
   title: 'AITrends.ng — Africa\'s AI news, today and next',
@@ -33,6 +34,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <NavBar />
         <main>{children}</main>
         <Footer />
+        <Analytics />
       </body>
     </html>
   )
