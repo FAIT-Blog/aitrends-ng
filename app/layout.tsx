@@ -6,8 +6,7 @@ import { Analytics } from '@vercel/analytics/next'
 
 export const metadata: Metadata = {
   title: 'AITrends.ng — Africa\'s AI news, today and next',
-  description:
-    "Africa's autonomous briefing on AI — the latest news, trends, and what it means for builders in Nigeria and across the continent.",
+  description: "AITrends.ng — insights, and lessons for the future.",
   metadataBase: new URL('https://www.aitrends.ng'),
   alternates: { canonical: 'https://www.aitrends.ng' },
   robots: { index: true, follow: true },
@@ -16,14 +15,14 @@ export const metadata: Metadata = {
     type: 'website',
     url: 'https://www.aitrends.ng',
     title: 'AITrends.ng — Africa\'s AI news, today and next',
-    description: "Africa's autonomous briefing on AI — news, trends, and what it means for builders in Nigeria and across the continent.",
+    description: "AITrends.ng — insights, and lessons for the future.",
     images: [{ url: 'https://www.aitrends.ng/og-default.png', width: 1200, height: 630, alt: 'AITrends.ng — Africa\'s AI news' }],
   },
   twitter: {
     card: 'summary_large_image',
     site: '@aitrends_ng',
     title: 'AITrends.ng — Africa\'s AI news, today and next',
-    description: "Africa's autonomous briefing on AI — news, trends, and what it means for builders in Nigeria.",
+    description: "AITrends.ng — insights, and lessons for the future.",
   },
 }
 

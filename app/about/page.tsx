@@ -29,7 +29,7 @@ export default function AboutPage() {
         About AITrends.ng
       </h1>
       <p style={{ color: 'var(--blue)', fontWeight: 600, fontSize: '1rem', marginBottom: 40 }}>
-        Africa&apos;s autonomous briefing on AI — today and the next AI trends.
+        AITrends.ng — insights, and lessons for the future.
       </p>
 
       <div style={{ display: 'flex', flexDirection: 'column', gap: 40 }}>

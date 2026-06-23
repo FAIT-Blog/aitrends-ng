@@ -10,7 +10,7 @@ export default function Footer() {
     >
       <p style={{ color: 'var(--muted)', fontSize: '0.82rem', marginBottom: 4 }}>
         <strong style={{ color: 'var(--text)' }}>AITrends<span style={{ color: 'var(--gold)' }}>.ng</span></strong>
-        {' '}— Today and the next AI trends
+        {' '}— insights, and lessons for the future.
       </p>
       <p style={{ color: 'var(--muted)', fontSize: '0.75rem' }}>
         <a href="/feed.xml" style={{ color: 'var(--muted)' }}>RSS</a>
