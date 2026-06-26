@@ -2,6 +2,7 @@
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
+import SearchDropdown from './SearchDropdown'
 
 const CATEGORIES = [
   { label: 'Anthropic', href: '/category/anthropic' },
@@ -58,6 +59,8 @@ export default function NavBar() {
               About
             </Link>
           </nav>
+
+          <SearchDropdown />
         </div>
       </div>
     </header>

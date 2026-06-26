@@ -118,6 +118,21 @@ code, pre, kbd {
   filter: drop-shadow(0 0 8px rgba(37, 99, 235, 0.6));
 }
 
+/* Search */
+.search-wrap {
+  position: relative;
+}
+.search-toggle {
+  display: none;
+}
+.search-input-wrap {
+  position: relative;
+  width: 180px;
+}
+.search-result-row:hover {
+  background: rgba(37, 99, 235, 0.12);
+}
+
 /* ── Mobile responsive ── */
 @media (max-width: 640px) {
   /* Hero post: stack image above text on mobile */
@@ -143,5 +158,22 @@ code, pre, kbd {
   .site-nav::-webkit-scrollbar { display: none; }
   .site-nav a {
     white-space: nowrap;
+  }
+
+  /* Search: collapse to an icon, expand into a full-width overlay on tap */
+  .search-toggle {
+    display: inline-flex;
+  }
+  .search-input-wrap {
+    display: none;
+  }
+  .search-input-wrap-open {
+    display: block;
+    position: fixed;
+    top: 60px;
+    left: 16px;
+    right: 16px;
+    width: auto;
+    z-index: 1001;
   }
 }
