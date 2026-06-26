@@ -73,7 +73,7 @@ export default function ShareButtons({ url, title }: Props) {
           Share on X
         </a>
 
-        {/* WhatsApp — critical for Nigerian/West African audience */}
+        {/* WhatsApp — high-usage share channel */}
         <a
           href={`https://wa.me/?text=${encoded.both}`}
           target="_blank"

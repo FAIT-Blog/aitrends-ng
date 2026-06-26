@@ -61,7 +61,7 @@ export default function NewsletterSignup() {
       ) : (
         <>
           <p style={{ color: 'var(--muted)', fontSize: '0.82rem', lineHeight: 1.6, marginBottom: 12 }}>
-            Get Africa&apos;s latest AI news in your inbox.
+            Get the latest AI news in your inbox.
           </p>
           <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
             <input

@@ -4,7 +4,7 @@ import Link from 'next/link'
 export const metadata: Metadata = {
   title: 'About — AITrends.ng',
   description:
-    "AITrends.ng is Africa's autonomous AI news platform — covering the latest AI trends, innovations, and what they mean for builders in Nigeria and across the continent.",
+    "AITrends.ng is an autonomous AI news platform — covering the latest AI trends, models, tools, and what they mean for builders.",
 }
 
 export default function AboutPage() {
@@ -49,11 +49,10 @@ export default function AboutPage() {
           </h2>
           <p style={{ color: '#9ca3af', lineHeight: 1.75 }}>
             AITrends.ng is a fully autonomous AI news and blog platform that captures the latest news,
-            events, happenings, innovations, and trends in Artificial Intelligence — with a primary
-            focus on Africa, and Nigeria and West Africa in particular. It monitors Africa-specific tech
-            sources as well as global AI publications, synthesises the most important stories through an
-            African lens, and publishes authoritative, opinionated briefings without any human
-            intervention. No editor. No scheduler. The system runs itself.
+            events, happenings, innovations, and trends across Artificial Intelligence — models, tools,
+            companies, and the broader industry. It monitors AI-dedicated and tech-industry sources,
+            synthesises the most important stories, and publishes authoritative, opinionated briefings
+            without any human intervention. No editor. No scheduler. The system runs itself.
           </p>
         </section>
 
@@ -81,12 +80,12 @@ export default function AboutPage() {
               {
                 step: '02',
                 title: 'Editorial rewrite',
-                body: 'Each new story is rewritten through an African lens — what does this mean for builders in Nigeria, Ghana, and across the continent? Punchy, opinionated, Africa-first. Not a summary — a briefing.',
+                body: 'Each new story is rewritten with a clear editorial point of view — what does this mean for the people building with AI? Punchy, opinionated, grounded in the facts. Not a summary — a briefing.',
               },
               {
                 step: '03',
                 title: 'Cover image generated',
-                body: 'A story-specific editorial illustration is generated for each post — watercolour, vector, ink sketch, or risograph. Africa-first scenes only; no generic stock photo compositions. The image is permanently stored, not a lazy URL.',
+                body: 'A story-specific editorial illustration is generated for each post — watercolour, vector, ink sketch, or risograph. Story-specific scenes only; no generic stock photo compositions. The image is permanently stored, not a lazy URL.',
               },
               {
                 step: '04',
@@ -152,10 +151,10 @@ export default function AboutPage() {
             Who it&apos;s for
           </h2>
           <p style={{ color: '#9ca3af', lineHeight: 1.75 }}>
-            Developers, founders, and AI practitioners in Nigeria, Ghana, Kenya, South Africa, and
-            across West Africa who want to stay ahead of the AI curve without spending hours hunting
-            across dozens of global and local sources. If you build products, run a startup, work in
-            tech, or just want to know what AI means for Africa right now — this is your briefing.
+            Developers, founders, and AI practitioners who want to stay ahead of the AI curve
+            without spending hours hunting across dozens of sources. If you build products, run a
+            startup, work in tech, or just want to know what's happening in AI right now — this is
+            your briefing.
           </p>
         </section>
 
@@ -174,7 +173,7 @@ export default function AboutPage() {
             A note on automation
           </h2>
           <p style={{ color: '#9ca3af', lineHeight: 1.75 }}>
-            AITrends.ng is an autonomous news platform. Our editorial pipeline monitors 25+ feeds, selects the most relevant AI stories for the African context, and publishes continuously. The goal is speed and coverage — getting you the signal from the noise, faster. Source URLs are always listed at the bottom of each post so you can go deeper on any story.
+            AITrends.ng is an autonomous news platform. Our editorial pipeline monitors 25+ feeds, selects the most relevant AI stories, and publishes continuously. The goal is speed and coverage — getting you the signal from the noise, faster. Source URLs are always listed at the bottom of each post so you can go deeper on any story.
           </p>
         </section>
 
@@ -196,7 +195,7 @@ export default function AboutPage() {
             AITrends.ng is built and maintained by{' '}
             <strong style={{ color: '#fff' }}>Felicota Audio Infotech (FAIT)</strong>, a Lagos-based
             technology company. It is one of several automated projects exploring what&apos;s possible when
-            you put AI systems to work building things for African audiences.
+            you put AI systems to work building things.
           </p>
         </section>
       </div>

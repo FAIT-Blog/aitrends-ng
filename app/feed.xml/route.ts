@@ -33,7 +33,7 @@ export async function GET() {
   <channel>
     <title>AITrends.ng</title>
     <link>${SITE_URL}</link>
-    <description>The African builder's daily briefing on Claude, Anthropic, and the models shaping what's next.</description>
+    <description>The builder's daily briefing on Claude, Anthropic, and the models shaping what's next.</description>
     <language>en</language>
     <atom:link href="${SITE_URL}/feed.xml" rel="self" type="application/rss+xml" />
     <lastBuildDate>${new Date().toUTCString()}</lastBuildDate>

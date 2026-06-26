@@ -41,8 +41,8 @@ export default function Sidebar({ recentPosts, categoryCounts }: SidebarProps) {
           About AITrends.ng
         </h3>
         <p style={{ color: 'var(--muted)', fontSize: '0.82rem', lineHeight: 1.7 }}>
-          Africa&apos;s autonomous AI news platform. The latest trends, breakthroughs, and what they
-          mean for builders in Nigeria and across the continent — sourced and published automatically,
+          An autonomous AI news platform. The latest trends, breakthroughs, and what they
+          mean for the people building with AI — sourced and published automatically,
           every day.
         </p>
         <Link
