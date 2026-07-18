@@ -1,37 +1,45 @@
 'use client'
 
-import { useState, useEffect, useRef, useCallback } from 'react'
+import { useState, useCallback } from 'react'
 import PostCard from './PostCard'
 import type { Post } from '@/lib/types'
 
-const PAGE_SIZE = 9
+const PAGE_SIZE = 50
 
-export default function PostGrid({ posts }: { posts: Post[] }) {
-  const [visible, setVisible] = useState(PAGE_SIZE)
-  const sentinelRef = useRef<HTMLDivElement>(null)
-  const hasMore = visible < posts.length
+export default function PostGrid({
+  posts: initialPosts,
+  category,
+}: {
+  posts: Post[]
+  category?: string
+}) {
+  const [posts, setPosts] = useState(initialPosts)
+  const [loading, setLoading] = useState(false)
+  const [total, setTotal] = useState<number | null>(null)
 
-  const loadMore = useCallback(() => {
-    setVisible(v => Math.min(v + PAGE_SIZE, posts.length))
-  }, [posts.length])
+  const hasMore = total === null || posts.length < total
 
-  useEffect(() => {
-    const sentinel = sentinelRef.current
-    if (!sentinel || !hasMore) return
+  const loadMore = useCallback(async () => {
+    setLoading(true)
+    try {
+      const params = new URLSearchParams({
+        offset: String(posts.length),
+        limit: String(PAGE_SIZE),
+      })
+      if (category) params.set('category', category)
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (entries[0].isIntersecting) loadMore()
-      },
-      // 300px lookahead — triggers before the sentinel is visible so cards
-      // appear before the user reaches the bottom. Feels seamless on mobile
-      // where finger-flick scrolling covers large distances quickly.
-      { rootMargin: '300px' }
-    )
-
-    observer.observe(sentinel)
-    return () => observer.disconnect()
-  }, [hasMore, loadMore])
+      const res = await fetch(`/api/posts/list?${params}`)
+      const data = await res.json()
+      if (data.posts) {
+        setPosts(prev => [...prev, ...data.posts])
+        setTotal(data.total)
+      }
+    } catch (err) {
+      console.error('Failed to load more posts:', err)
+    } finally {
+      setLoading(false)
+    }
+  }, [posts.length, category])
 
   if (posts.length === 0) {
     return (
@@ -50,19 +58,34 @@ export default function PostGrid({ posts }: { posts: Post[] }) {
           gap: 24,
         }}
       >
-        {posts.slice(0, visible).map((post) => (
+        {posts.map((post) => (
           <PostCard key={post.id} post={post} />
         ))}
       </div>
 
-      {/* Sentinel — zero-height element watched by IntersectionObserver.
-          Only rendered when more posts remain so the observer is disconnected
-          once everything is loaded, freeing resources. */}
       {hasMore && (
-        <div ref={sentinelRef} style={{ height: 1, marginTop: 48 }} aria-hidden="true" />
+        <div style={{ textAlign: 'center', marginTop: 40 }}>
+          <button
+            onClick={loadMore}
+            disabled={loading}
+            style={{
+              padding: '10px 32px',
+              borderRadius: 8,
+              border: '1px solid var(--border)',
+              background: loading ? 'var(--muted)' : 'var(--surface)',
+              color: loading ? 'var(--text)' : 'var(--blue)',
+              fontWeight: 600,
+              fontSize: '0.85rem',
+              cursor: loading ? 'default' : 'pointer',
+              transition: 'all 0.2s',
+            }}
+          >
+            {loading ? 'Loading...' : 'Load More'}
+          </button>
+        </div>
       )}
 
-      {!hasMore && posts.length > PAGE_SIZE && (
+      {!hasMore && posts.length > 50 && (
         <p style={{
           textAlign: 'center',
           marginTop: 48,

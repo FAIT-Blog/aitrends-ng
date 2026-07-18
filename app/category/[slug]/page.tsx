@@ -101,7 +101,7 @@ export default async function CategoryPage({ params }: Props) {
       </div>
 
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 300px', gap: 40, alignItems: 'start' }}>
-        <PostGrid posts={posts} />
+        <PostGrid posts={posts} category={slug} />
         <Sidebar recentPosts={posts} categoryCounts={categoryCounts} />
       </div>
     </div>
