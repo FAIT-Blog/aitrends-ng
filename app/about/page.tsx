@@ -195,7 +195,7 @@ export default function AboutPage() {
               paddingBottom: 8,
             }}
           >
-            Why We Built It
+            Why We Exist
           </h2>
           <p style={{ color: '#9ca3af', lineHeight: 1.85 }}>
             We believe the future belongs to people who understand technological change
