@@ -7,6 +7,7 @@ import { supabase } from '@/lib/supabase'
 import type { Post } from '@/lib/types'
 import PostGrid from '@/components/PostGrid'
 import Sidebar from '@/components/Sidebar'
+import { getCategoryCounts } from '@/lib/categoryCounts'
 
 interface Props {
   params: Promise<{ slug: string }>
@@ -46,15 +47,6 @@ async function getPosts(category: string): Promise<Post[]> {
     .order('published_at', { ascending: false })
     .limit(50)
   return (data as Post[]) ?? []
-}
-
-async function getCategoryCounts(): Promise<Record<string, number>> {
-  const { data } = await supabase.from('posts').select('category').eq('status', 'published')
-  if (!data) return {}
-  return data.reduce<Record<string, number>>((acc, row) => {
-    acc[row.category] = (acc[row.category] ?? 0) + 1
-    return acc
-  }, {})
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {

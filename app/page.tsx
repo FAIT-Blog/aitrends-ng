@@ -5,6 +5,7 @@ import type { Post } from '@/lib/types'
 import HeroPost from '@/components/HeroPost'
 import PostGrid from '@/components/PostGrid'
 import Sidebar from '@/components/Sidebar'
+import { getCategoryCounts } from '@/lib/categoryCounts'
 import Link from 'next/link'
 
 const CATEGORIES = [
@@ -24,19 +25,6 @@ async function getPosts(): Promise<Post[]> {
     .order('published_at', { ascending: false })
     .limit(50)
   return (data as Post[]) ?? []
-}
-
-async function getCategoryCounts(): Promise<Record<string, number>> {
-  const { data } = await supabase
-    .from('posts')
-    .select('category')
-    .eq('status', 'published')
-
-  if (!data) return {}
-  return data.reduce<Record<string, number>>((acc, row) => {
-    acc[row.category] = (acc[row.category] ?? 0) + 1
-    return acc
-  }, {})
 }
 
 export default async function HomePage() {
