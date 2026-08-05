@@ -25,6 +25,8 @@ export default function PendingActions({ id, gatePass }: Props) {
       if (!res.ok) {
         const data = await res.json().catch(() => ({}))
         setError((data as { error?: string }).error || 'Request failed')
+      } else if (action === 'delete') {
+        router.replace('/admin/pending')
       } else {
         router.refresh()
       }

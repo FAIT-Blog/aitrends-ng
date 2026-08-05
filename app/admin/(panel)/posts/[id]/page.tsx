@@ -40,7 +40,7 @@ export default async function AdminPostDetailPage({ params }: { params: Promise<
       <SectionCard
         title="Actions"
         action={
-          <PostActions postId={post.id} status={post.status} slug={post.slug} />
+          <PostActions postId={post.id} status={post.status} slug={post.slug} redirectAfterDelete />
         }
       >
         <p style={{ color: 'var(--muted)', fontSize: '0.8rem', margin: 0 }}>

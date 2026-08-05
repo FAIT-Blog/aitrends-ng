@@ -7,9 +7,10 @@ interface Props {
   postId: string
   status: 'published' | 'draft'
   slug: string
+  redirectAfterDelete?: boolean
 }
 
-export default function PostActions({ postId, status, slug }: Props) {
+export default function PostActions({ postId, status, slug, redirectAfterDelete = false }: Props) {
   const router = useRouter()
   const [busy, setBusy] = useState(false)
   const [error, setError] = useState('')
@@ -28,6 +29,8 @@ export default function PostActions({ postId, status, slug }: Props) {
       if (!res.ok) {
         const data = await res.json().catch(() => ({}))
         setError((data as { error?: string }).error || 'Request failed')
+      } else if (action === 'delete' && redirectAfterDelete) {
+        router.replace('/admin/posts')
       } else {
         router.refresh()
       }
