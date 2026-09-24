@@ -9,9 +9,10 @@ function readTime(content: string) {
   return Math.max(1, Math.round(words / 200))
 }
 
-function formatDate(iso: string | null) {
+function formatDateTime(iso: string | null) {
   if (!iso) return ''
-  return new Date(iso).toLocaleDateString('en-NG', { day: 'numeric', month: 'short', year: 'numeric' })
+  const d = new Date(iso)
+  return `${d.toLocaleDateString('en-NG', { day: 'numeric', month: 'short', year: 'numeric' })} · ${d.toLocaleTimeString('en-NG', { hour: 'numeric', minute: '2-digit' })}`
 }
 
 export default function PostCard({ post }: { post: Post }) {
@@ -115,7 +116,7 @@ export default function PostCard({ post }: { post: Post }) {
           </p>
 
           <div style={{ display: 'flex', gap: 12, fontSize: '0.72rem', color: 'var(--muted)', marginTop: 4 }}>
-            <span>{formatDate(post.published_at)}</span>
+            <span>{formatDateTime(post.published_at)}</span>
             <span>{readTime(post.content)} min read</span>
           </div>
         </div>

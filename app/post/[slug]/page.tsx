@@ -65,9 +65,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 }
 
-function formatDate(iso: string | null) {
+function formatDateTime(iso: string | null) {
   if (!iso) return ''
-  return new Date(iso).toLocaleDateString('en-NG', { day: 'numeric', month: 'long', year: 'numeric' })
+  const d = new Date(iso)
+  return `${d.toLocaleDateString('en-NG', { day: 'numeric', month: 'long', year: 'numeric' })} · ${d.toLocaleTimeString('en-NG', { hour: 'numeric', minute: '2-digit' })}`
 }
 
 function readTime(content: string) {
@@ -161,9 +162,9 @@ export default async function PostPage({ params }: Props) {
       {/* Meta */}
       <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 20, flexWrap: 'wrap' }}>
         <CategoryBadge category={post.category} />
-        <span style={{ color: 'var(--muted)', fontSize: '0.8rem' }}>Published {formatDate(post.published_at)}</span>
+        <span style={{ color: 'var(--muted)', fontSize: '0.8rem' }}>Published {formatDateTime(post.published_at)}</span>
         {wasUpdated(post.published_at, post.updated_at) && (
-          <span style={{ color: 'var(--muted)', fontSize: '0.8rem' }}>· Updated {formatDate(post.updated_at ?? null)}</span>
+          <span style={{ color: 'var(--muted)', fontSize: '0.8rem' }}>Updated {formatDateTime(post.updated_at ?? null)}</span>
         )}
         <span style={{ color: 'var(--muted)', fontSize: '0.8rem' }}>{readTime(post.content)} min read</span>
       </div>
@@ -239,7 +240,7 @@ export default async function PostPage({ params }: Props) {
       {/* Share */}
       <ShareButtons url={postUrl} title={post.title} />
 
-      {/* People Also Ask — related posts as internal hyperlinks */}
+      {/* People Also Read — related posts as internal hyperlinks */}
       {related.length > 0 && (
         <div
           style={{
@@ -261,7 +262,7 @@ export default async function PostPage({ params }: Props) {
               margin: '0 0 16px',
             }}
           >
-            People Also Ask
+People Also Read
           </p>
           <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: 0 }}>
             {related.map((p, i) => (

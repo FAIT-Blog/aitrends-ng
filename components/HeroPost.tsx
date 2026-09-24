@@ -3,9 +3,10 @@ import Link from 'next/link'
 import CategoryBadge from './CategoryBadge'
 import type { Post } from '@/lib/types'
 
-function formatDate(iso: string | null) {
+function formatDateTime(iso: string | null) {
   if (!iso) return ''
-  return new Date(iso).toLocaleDateString('en-NG', { day: 'numeric', month: 'long', year: 'numeric' })
+  const d = new Date(iso)
+  return `${d.toLocaleDateString('en-NG', { day: 'numeric', month: 'long', year: 'numeric' })} · ${d.toLocaleTimeString('en-NG', { hour: 'numeric', minute: '2-digit' })}`
 }
 
 export default function HeroPost({ post }: { post: Post }) {
@@ -76,7 +77,7 @@ export default function HeroPost({ post }: { post: Post }) {
           <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
             <CategoryBadge category={post.category} />
             <span style={{ color: 'var(--muted)', fontSize: '0.75rem' }}>
-              {formatDate(post.published_at)}
+              {formatDateTime(post.published_at)}
             </span>
           </div>
 
