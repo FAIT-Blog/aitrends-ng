@@ -150,7 +150,7 @@ export default async function PostPage({ params }: Props) {
         <div style={{ position: 'relative', aspectRatio: '16/9', marginBottom: 36, borderRadius: 12, overflow: 'hidden' }}>
           <Image
             src={post.cover_image_url}
-            alt={post.cover_image_prompt || post.title}
+            alt={post.cover_image_alt || post.title}
             fill
             priority
             style={{ objectFit: 'cover' }}

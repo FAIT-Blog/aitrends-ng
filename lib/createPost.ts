@@ -9,6 +9,7 @@ export interface PostPayload {
   tags?: string[]
   cover_image_url?: string
   cover_image_prompt?: string
+  cover_image_alt?: string
   source_urls?: string[]
   auto_generated?: boolean
 }
@@ -22,6 +23,7 @@ export async function createPost(payload: PostPayload, status: 'published' | 'dr
     tags = [],
     cover_image_url = '',
     cover_image_prompt = '',
+    cover_image_alt = '',
     source_urls = [],
     auto_generated = false,
   } = payload
@@ -54,6 +56,7 @@ export async function createPost(payload: PostPayload, status: 'published' | 'dr
       tags,
       cover_image_url,
       cover_image_prompt,
+      cover_image_alt,
       source_urls,
       status,
       auto_generated,

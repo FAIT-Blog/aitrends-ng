@@ -8,6 +8,7 @@ export interface Post {
   tags: string[]
   cover_image_url: string
   cover_image_prompt: string
+  cover_image_alt?: string | null
   source_urls: string[]
   status: 'published' | 'draft'
   auto_generated: boolean

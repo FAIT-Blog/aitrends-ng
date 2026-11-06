@@ -90,6 +90,8 @@ export async function POST(req: NextRequest) {
         cover_image_url: isSafeUrl(body.cover_image_url),
         cover_image_prompt:
           typeof body.cover_image_prompt === 'string' ? body.cover_image_prompt : '',
+        cover_image_alt:
+          typeof body.cover_image_alt === 'string' ? body.cover_image_alt.trim().slice(0, 300) : '',
         source_urls: Array.isArray(body.source_urls)
           ? (body.source_urls as unknown[]).map(isSafeUrl).filter(Boolean) as string[]
           : [],

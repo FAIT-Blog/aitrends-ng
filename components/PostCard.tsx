@@ -57,7 +57,7 @@ export default function PostCard({ post }: { post: Post }) {
           {post.cover_image_url ? (
             <img
               src={post.cover_image_url}
-              alt={post.cover_image_prompt || post.title}
+              alt={post.cover_image_alt || post.title}
               loading="lazy"
               style={{
                 position: 'absolute',
