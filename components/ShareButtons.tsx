@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import { SOCIAL_VIA_HANDLE } from '@/lib/social'
 
 interface Props {
   url: string
@@ -60,7 +61,7 @@ export default function ShareButtons({ url, title }: Props) {
 
         {/* X / Twitter */}
         <a
-          href={`https://twitter.com/intent/tweet?text=${encoded.title}&url=${encoded.url}`}
+          href={`https://twitter.com/intent/tweet?text=${encoded.title}&url=${encoded.url}&via=${SOCIAL_VIA_HANDLE}`}
           target="_blank"
           rel="noopener noreferrer"
           style={BTN}

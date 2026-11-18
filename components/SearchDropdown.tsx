@@ -22,14 +22,19 @@ export default function SearchDropdown() {
   const wrapRef = useRef<HTMLDivElement>(null)
   const inputRef = useRef<HTMLInputElement>(null)
 
-  // Debounce: wait 300ms after typing stops before fetching.
-  useEffect(() => {
-    if (query.trim().length < 2) {
+  function handleQueryChange(value: string) {
+    setQuery(value)
+    if (value.trim().length < 2) {
       setResults([])
       setStatus('idle')
       return
     }
     setStatus('loading')
+  }
+
+  // Debounce: wait 300ms after typing stops before fetching.
+  useEffect(() => {
+    if (query.trim().length < 2) return
     const timer = setTimeout(async () => {
       try {
         const res = await fetch(`/api/search?q=${encodeURIComponent(query.trim())}`)
@@ -96,7 +101,7 @@ export default function SearchDropdown() {
           type="text"
           placeholder="Search posts..."
           value={query}
-          onChange={(e) => setQuery(e.target.value)}
+          onChange={(e) => handleQueryChange(e.target.value)}
           onKeyDown={handleKeyDown}
           style={{
             background: '#0d1117',

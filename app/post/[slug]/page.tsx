@@ -5,6 +5,7 @@ import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
 import { supabase } from '@/lib/supabase'
+import { SOCIAL_SAME_AS } from '@/lib/social'
 import type { Post } from '@/lib/types'
 import CategoryBadge from '@/components/CategoryBadge'
 import ShareButtons from '@/components/ShareButtons'
@@ -114,12 +115,13 @@ export default async function PostPage({ params }: Props) {
     image: post.cover_image_url || undefined,
     datePublished: post.published_at || undefined,
     dateModified: post.updated_at || post.published_at || undefined,
-    author: { '@type': 'Organization', name: 'AITrends.ng', url: 'https://www.aitrends.ng' },
+    author: { '@type': 'Organization', name: 'AITrends.ng', url: 'https://www.aitrends.ng', sameAs: SOCIAL_SAME_AS },
     publisher: {
       '@type': 'Organization',
       name: 'AITrends.ng',
       url: 'https://www.aitrends.ng',
       logo: { '@type': 'ImageObject', url: 'https://www.aitrends.ng/logo.png' },
+      sameAs: SOCIAL_SAME_AS,
     },
     mainEntityOfPage: { '@type': 'WebPage', '@id': postUrl },
     keywords: post.tags?.join(', ') || post.category,

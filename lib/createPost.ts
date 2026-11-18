@@ -29,7 +29,7 @@ export async function createPost(payload: PostPayload, status: 'published' | 'dr
   } = payload
 
   // Generate unique slug
-  let baseSlug = slugify(title)
+  const baseSlug = slugify(title)
   let slug = baseSlug
   let suffix = 2
 

@@ -1,3 +1,5 @@
+import { SOCIAL_PROFILES } from '@/lib/social'
+
 export default function Footer() {
   return (
     <footer
@@ -12,8 +14,9 @@ export default function Footer() {
         <strong style={{ color: 'var(--text)' }}>AITrends<span style={{ color: 'var(--gold)' }}>.ng</span></strong>
         {' '}— insights, and lessons for the future.
       </p>
-      <p style={{ color: 'var(--muted)', fontSize: '0.75rem' }}>
+      <p style={{ color: 'var(--muted)', fontSize: '0.75rem', display: 'flex', gap: 14, justifyContent: 'center', flexWrap: 'wrap' }}>
         <a href="/feed.xml" style={{ color: 'var(--muted)' }}>RSS</a>
+        <a href={SOCIAL_PROFILES.telegram} target="_blank" rel="noopener noreferrer" style={{ color: 'var(--muted)' }}>Telegram</a>
       </p>
     </footer>
   )
