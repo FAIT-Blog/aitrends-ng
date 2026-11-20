@@ -1,6 +1,8 @@
 import Link from 'next/link'
 import type { Post } from '@/lib/types'
 import NewsletterSignup from '@/components/NewsletterSignup'
+import SocialShareIcons from '@/components/SocialShareIcons'
+import { SOCIAL_PROFILES } from '@/lib/social'
 
 const CATEGORIES = [
   { slug: 'anthropic', label: 'Anthropic' },
@@ -51,6 +53,57 @@ export default function Sidebar({ recentPosts, categoryCounts }: SidebarProps) {
         >
           Learn how it works →
         </Link>
+      </div>
+
+      <div
+        style={{
+          background: 'var(--surface)',
+          border: '1px solid var(--border)',
+          borderRadius: 12,
+          padding: '20px 22px',
+        }}
+      >
+        <h3
+          style={{
+            fontFamily: 'Sora, sans-serif',
+            fontWeight: 700,
+            fontSize: '0.88rem',
+            color: 'var(--blue)',
+            marginBottom: 10,
+            textTransform: 'uppercase',
+            letterSpacing: '0.06em',
+          }}
+        >
+          Socials
+        </h3>
+        <p style={{ color: 'var(--muted)', fontSize: '0.78rem', lineHeight: 1.6, marginBottom: 12 }}>
+          Follow AITrends.ng and share this page.
+        </p>
+        <div style={{ display: 'flex', gap: 14, flexWrap: 'wrap', marginBottom: 14 }}>
+          <a
+            href={SOCIAL_PROFILES.telegram}
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ color: 'var(--text)', fontSize: '0.78rem', fontWeight: 600, textDecoration: 'none' }}
+          >
+            Telegram
+          </a>
+          <a
+            href={SOCIAL_PROFILES.bluesky}
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ color: 'var(--text)', fontSize: '0.78rem', fontWeight: 600, textDecoration: 'none' }}
+          >
+            Bluesky
+          </a>
+        </div>
+        <div style={{ borderTop: '1px solid var(--border)', paddingTop: 14 }}>
+          <SocialShareIcons
+            url="https://www.aitrends.ng/"
+            title="AITrends.ng — insights, and lessons for the future."
+            label="Share this page"
+          />
+        </div>
       </div>
 
       <NewsletterSignup />

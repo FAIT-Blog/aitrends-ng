@@ -9,6 +9,7 @@ import { SOCIAL_SAME_AS } from '@/lib/social'
 import type { Post } from '@/lib/types'
 import CategoryBadge from '@/components/CategoryBadge'
 import ShareButtons from '@/components/ShareButtons'
+import SocialShareIcons from '@/components/SocialShareIcons'
 import FeedbackForm from '@/components/FeedbackForm'
 
 interface Props {
@@ -133,7 +134,11 @@ export default async function PostPage({ params }: Props) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-    <div style={{ maxWidth: 800, margin: '0 auto', padding: '40px 20px 80px' }}>
+    <div style={{ maxWidth: 800, margin: '0 auto', padding: '24px 20px 80px' }}>
+      <div style={{ marginBottom: 24 }}>
+        <SocialShareIcons url={postUrl} title={post.title} label="Share this post" align="right" />
+      </div>
+
       {/* Breadcrumb */}
       <div style={{ marginBottom: 24, fontSize: '0.8rem', color: 'var(--muted)', display: 'flex', gap: 6, alignItems: 'center' }}>
         <Link href="/" style={{ color: 'var(--muted)', textDecoration: 'none' }}>Home</Link>

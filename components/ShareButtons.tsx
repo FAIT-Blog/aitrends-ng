@@ -119,6 +119,20 @@ export default function ShareButtons({ url, title }: Props) {
           Telegram
         </a>
 
+        <a
+          href={`https://bsky.app/intent/compose?text=${encoded.both}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          style={BTN}
+          onMouseEnter={e => { (e.currentTarget as HTMLElement).style.borderColor = '#2085E8'; (e.currentTarget as HTMLElement).style.color = '#2085E8' }}
+          onMouseLeave={e => { (e.currentTarget as HTMLElement).style.borderColor = 'var(--border)'; (e.currentTarget as HTMLElement).style.color = 'var(--text)' }}
+        >
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M320 272.5c-28.3-51-80.3-134.8-128.8-175.9-46.5-39.3-116.7-14.1-116.7 46.5 0 31.4 17.2 84.8 29 120.5 20.7 61.2 78.1 104.4 137.8 104.4 22.3 0 44.3-4.7 64.8-13.9 6.5-3 13.2-5.5 20-7.5 6.8 2 13.5 4.5 20 7.5 20.5 9.2 42.5 13.9 64.8 13.9 59.7 0 117.1-43.2 137.8-104.4 11.8-35.7 29-89.1 29-120.5 0-60.6-70.2-85.8-116.7-46.5-48.5 41.1-100.5 124.9-128.8 175.9z"/>
+          </svg>
+          Bluesky
+        </a>
+
         {/* Copy Link */}
         <button
           onClick={handleCopy}
