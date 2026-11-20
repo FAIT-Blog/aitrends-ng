@@ -17,6 +17,7 @@ export default function Footer() {
       <p style={{ color: 'var(--muted)', fontSize: '0.75rem', display: 'flex', gap: 14, justifyContent: 'center', flexWrap: 'wrap' }}>
         <a href="/feed.xml" style={{ color: 'var(--muted)' }}>RSS</a>
         <a href={SOCIAL_PROFILES.telegram} target="_blank" rel="noopener noreferrer" style={{ color: 'var(--muted)' }}>Telegram</a>
+        <a href={SOCIAL_PROFILES.bluesky} target="_blank" rel="noopener noreferrer" style={{ color: 'var(--muted)' }}>Bluesky</a>
       </p>
     </footer>
   )
