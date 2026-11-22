@@ -1,0 +1,36 @@
+-- source_reputation — OBSERVATION-ONLY TELEMETRY (closed-source model)
+-- STATUS: DESIGN ARTIFACT — NOT APPLIED.
+-- Intended rollout: SOURCE-AUTHORITY REMOVAL STAGE (after Stage 1 registry-based
+-- monitoring is approved and proven). Behaviourally inactive until then.
+-- STAGE 3 artifact. Supersedes the Session #43 remediate-source-reputation.sql,
+-- which still endorsed promotion-from-repetition (tier-gated instead of count-
+-- gated — it demoted social platforms to re-baseline them for a FUTURE promotion).
+-- That concept is now ENTIRELY removed by design.
+--
+-- Closed-registry rule (Felix, locked 9 Aug 2026):
+--   source_reputation has ZERO authority over source admission or priority.
+--   A source outside curated_source_registry remains unknown/discovery forever
+--   until Felix explicitly adds it.
+--   Discover ≠ Evidence ≠ Authority.
+--
+-- This migration (review-only until Stage 3 approval):
+--   1. Neutralises ALL existing promotion: is_priority = false for every row.
+--   2. Keeps count / promoted_at / dropped_at as pure historical trace — no
+--      future code path may READ is_priority for a decision.
+--   3. Confirms count / last_seen remain as observation telemetry only, so the
+--      Session #43 priority anomaly (social platforms ranked above credible
+--      news domains) becomes permanently impossible to recur.
+--
+-- ✋ Idempotent review step first:
+--   SELECT count(*) FROM source_reputation WHERE is_priority = true;
+-- Then uncomment the UPDATE below at Stage 3, after Felix approves.
+
+-- Neutralise every existing priority flag — no source carries authority from
+-- accumulated frequency, ever again.
+-- UPDATE source_reputation SET is_priority = false WHERE is_priority = true;
+
+-- Add first_seen so the table can track observation windows without any
+-- authority semantics.
+-- ALTER TABLE source_reputation
+--   ADD COLUMN IF NOT EXISTS first_seen timestamptz;
+-- UPDATE source_reputation SET first_seen = created_at WHERE first_seen IS NULL;

@@ -1,3 +1,5 @@
+> ⚠️ **QUARANTINED 2026-10-02 (CLAUDE.md §0.3)** — This document is NOT current. It contradicts `CLAUDE.md`, which is the sole governing specification for this project. See §0 in `CLAUDE.md` for authority/precedence. Do not cite this file as current behaviour; verify against live code via `CLAUDE.md`.
+
 > **NOTE:** This file is the aitrends.ng-specific reference spec.
 > The master spec for the whole AITrends project (both aitrends.ng + scout-agent) lives at:
 > `aitrends-project/CLAUDE.md`
