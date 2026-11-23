@@ -2,7 +2,6 @@ export const dynamic = 'force-dynamic'
 
 import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
-import Image from 'next/image'
 import Link from 'next/link'
 import { supabase } from '@/lib/supabase'
 import { SOCIAL_SAME_AS } from '@/lib/social'
@@ -155,13 +154,18 @@ export default async function PostPage({ params }: Props) {
       {/* Cover image */}
       {post.cover_image_url && (
         <div style={{ position: 'relative', aspectRatio: '16/9', marginBottom: 36, borderRadius: 12, overflow: 'hidden' }}>
-          <Image
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
             src={post.cover_image_url}
             alt={post.cover_image_alt || post.title}
-            fill
-            priority
-            style={{ objectFit: 'cover' }}
-            sizes="(max-width: 800px) 100vw, 800px"
+            loading="eager"
+            style={{
+              position: 'absolute',
+              inset: 0,
+              width: '100%',
+              height: '100%',
+              objectFit: 'cover',
+            }}
           />
         </div>
       )}
